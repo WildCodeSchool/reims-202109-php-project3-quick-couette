@@ -43,6 +43,13 @@ class Article
         return $this->id;
     }
 
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getWidth(): ?int
     {
         return $this->width;
