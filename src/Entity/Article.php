@@ -15,22 +15,22 @@ class Article
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $width;
+    private int $width;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $length;
+    private int $length;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $quantity;
+    private int $quantity;
 
     /**
      * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="articles")

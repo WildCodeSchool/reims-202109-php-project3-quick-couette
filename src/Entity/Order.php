@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,17 +19,17 @@ class Order
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $savedAt;
+    private DateTime $savedAt;
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="command", orphanRemoval=true)
