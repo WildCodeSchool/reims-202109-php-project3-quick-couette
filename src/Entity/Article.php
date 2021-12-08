@@ -36,7 +36,7 @@ class Article
      * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
-    private Order $command;
+    private ?Order $command;
 
     public function getId(): ?int
     {
