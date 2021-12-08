@@ -34,6 +34,7 @@ class Order
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="command", orphanRemoval=true)
+     * @var Collection<Article>
      */
     private Collection $articles;
 
@@ -45,13 +46,6 @@ class Order
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -98,12 +92,7 @@ class Order
 
     public function removeArticle(Article $article): self
     {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getCommand() === $this) {
-                $article->setCommand(null);
-            }
-        }
+        $this->articles->removeElement($article);
 
         return $this;
     }
