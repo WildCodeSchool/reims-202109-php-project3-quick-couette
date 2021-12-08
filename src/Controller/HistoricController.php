@@ -11,8 +11,13 @@ class HistoricController extends AbstractController
     #[Route('/historic', name: 'historic')]
     public function index(): Response
     {
+/*         $historics = $this->getDoctrine()
+             ->getRepository(Historic::class)
+             ->findAll();
+
         return $this->render('historic/index.html.twig', [
-            'controller_name' => 'HistoricController',
-        ]);
+            'historics' => $historics,
+        ]); */
+        return $this->render('historic/index.html.twig');
     }
 }
