@@ -17,7 +17,7 @@ class ArticleFixtures extends Fixture
         $article->setQuantity("3");
         $article->setCommand($this->getReference('order1'));
         $manager->persist($article);
-        
+
         $manager->flush();
     }
 }
