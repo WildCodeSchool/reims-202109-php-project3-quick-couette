@@ -9,22 +9,26 @@
 
         <button>Rechercher</button>
     </div>
-    <div>
+
+    {% for order in orders %}
         <div>
-            <h1>Nom de la commande</h1>
+            <div>
+                <h1>{{ order.name }}</h1>
+            </div>
+            <div>
+                {% for article in order.articles %}
+                    <p>Longueur : {{ article.length }} / Largeur : {{ article.width }} / Quantité : {{ article.quantity }}</p>
+                {% endfor %}
+            </div>
+            <div>
+                <h2>Résultat</h2>
+                <p>Longueur</p>
+                <p>Chutes</p>
+            </div>
+            <button>Modifier</button>
         </div>
-        <div>
-            <p>Longueur/largeur/quantité</p>
-            <p>Longueur/largeur/quantité</p>
-            <p>Longueur/largeur/quantité</p>
-                        ...
-            <p>Longueur/largeur/quantité</p>
-        </div>
-        <div>
-            <h2>Résultat</h2>
-            <p>Longueur</p>
-            <p>Chutes</p>
-        </div>
-        <button>Modifier</button>
-    </div>
+    {% else %}
+        Aucune commande calculée.
+    {% endfor %}
+
 {% endblock %}
