@@ -1,0 +1,19 @@
+@import 'variables.scss';
+
+.logo {
+    width: 100px;
+    float: left;
+}
+.header {
+    text-align: center;
+    background: $main-color;
+    color: $golden-color;
+    font-size: 15px;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .slogan{
+    margin-top: 1rem;
+    color: white;
+}
