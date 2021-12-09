@@ -6,14 +6,32 @@
     padding: 0;
 }
 
-.nav-containt {
-    list-style: none;
+/* ------------------------- body ------------------------- */
+
+body {
+    background-color: $secondary-color;
+}
+
+/* ------------------------- navbar ------------------------- */
+
+.nav-container {
+    list-style-type: none;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-top: 1rem;
+    font-size: 30px;
     position: fixed;
     width: 100%;
     bottom: 0;
+    border-top: solid;
+    border-color: $golden-color;
+    border-width: 5px;
+   
+    
+    align-items: center;
 }
 
+.nav-link {
+    text-decoration: none;
+    color: $golden-color;
+}
