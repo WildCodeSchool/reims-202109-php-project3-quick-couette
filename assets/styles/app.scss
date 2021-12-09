@@ -1,11 +1,10 @@
 @import 'variables.scss';
+@import 'header.scss';
 
 * {
     margin: 0;
     padding: 0;
 }
-
-/* ------------------------- navbar ------------------------- */
 
 .nav-containt {
     list-style: none;
@@ -13,8 +12,8 @@
     flex-direction: row;
     justify-content: space-evenly;
     margin-top: 1rem;
-    font-size: 30px;
     position: fixed;
     width: 100%;
     bottom: 0;
 }
+
