@@ -25,19 +25,12 @@ body {
     border-top: solid;
     border-color: $golden-color;
     border-width: 5px;
-    margin-top: 1rem;
-    height: 4rem;
+   
+    
     align-items: center;
 }
 
 .nav-link {
     text-decoration: none;
     color: $golden-color;
-}
-
-.nav-items {
-    a {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
 }
