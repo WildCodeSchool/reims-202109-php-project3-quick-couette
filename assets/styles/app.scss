@@ -5,10 +5,16 @@
     padding: 0;
 }
 
+/* ------------------------- body ------------------------- */
+
+body {
+    background-color: $secondary-color;
+}
+
 /* ------------------------- navbar ------------------------- */
 
-.nav-containt {
-    list-style: none;
+.nav-container {
+    list-style-type: none;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -17,4 +23,20 @@
     position: fixed;
     width: 100%;
     bottom: 0;
+    border-top: solid;
+    border-color: $golden-color;
+    border-width: 5px;
+    height: 4rem;
+    align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: $golden-color;
+}
+
+.nav-items a {
+    
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
 }
