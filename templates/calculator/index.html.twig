@@ -25,14 +25,10 @@
 
     <button id="calculator-add" type="button" data-list-selector="#articles">Ajouter</button>
 
-    <button id="calculator-calculate">Calculer</button>
-
-    {% if showResults %}
-        <div id="calculator-results">
-            <h1>Resultats ###</h1>
-            {{ form_widget(form) }}
-            <button id="calculator-save" formaction="{{ path("calculator_save") }}">Sauvegarder</button>
-        </div>
-    {% endif %}
-{{ form_end(form, {render_rest: false}) }}
+    <div id="calculator-results">
+        <h1>Resultats ###</h1>
+        {{ form_widget(form) }}
+        <button id="calculator-save">Sauvegarder</button>
+    </div>
+{{ form_end(form) }}
 {% endblock %}
