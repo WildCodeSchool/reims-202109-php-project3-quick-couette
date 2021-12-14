@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calculatrice{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('calculator') }}
+{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+    {{ form_label(form.articles) }}
+    {{ form_errors(form.articles) }}
+    <div id="articles"
+        data-prototype="{{ form_widget(form.articles.vars.prototype)|e }}"
+        data-widget-tags="{{ '<div class="calculator-article"></div>'|e }}"
+        data-widget-counter="{{ form.articles|length }}">
+    {% for article_field in form.articles %}
+        <div class="calculator-article">
+            {{ form_errors(article_field) }}
+            {{ form_widget(article_field) }}
+        </div>
+    {% endfor %}
+    </div>
+
+    <button id="calculator-add" type="button" data-list-selector="#articles">Ajouter</button>
+
+    <div id="calculator-results">
+        <h1>Resultats ###</h1>
+        {{ form_widget(form) }}
+        <button id="calculator-save">Sauvegarder</button>
+    </div>
+{{ form_end(form) }}
+{% endblock %}

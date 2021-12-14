@@ -36,18 +36,11 @@ class Article
      * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?Order $command;
+    private Order $command;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getWidth(): ?int
@@ -86,12 +79,12 @@ class Article
         return $this;
     }
 
-    public function getCommand(): ?Order
+    public function getCommand(): Order
     {
         return $this->command;
     }
 
-    public function setCommand(?Order $command): self
+    public function setCommand(Order $command): self
     {
         $this->command = $command;
 
