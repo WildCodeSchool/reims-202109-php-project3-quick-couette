@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique{% endblock %}
+
+{% block body %}
+    <div>
+        <label for="historic-search">Rechercher par nom : </label>
+        <input type="search" id="historic-search" name="historic-search" placeholder="Rechercher ...">
+
+        <button>Rechercher</button>
+    </div>
+
+    {% for order in orders %}
+        <div>
+            <div>
+                <h1>{{ order.name }}</h1>
+            </div>
+            <div>
+                {% for article in order.articles %}
+                    <p>Longueur : {{ article.length }} / Largeur : {{ article.width }} / Quantité : {{ article.quantity }}</p>
+                {% endfor %}
+            </div>
+            <div>
+                <h2>Résultat</h2>
+                <p>Longueur</p>
+                <p>Chutes</p>
+            </div>
+            <button>Modifier</button>
+        </div>
+    {% else %}
+        Aucune commande calculée.
+    {% endfor %}
+
+{% endblock %}
