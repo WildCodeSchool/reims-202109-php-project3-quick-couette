@@ -33,4 +33,16 @@ class CalculatorController extends AbstractController
             "form" => $form->createView(),
         ]);
     }
+
+    #[Route('/history', name: 'history')]
+    public function history(): Response
+    {
+        $orders = $this->getDoctrine()
+            ->getRepository(Order::class)
+            ->findAll();
+
+        return $this->render('calculator/history.html.twig', [
+            'orders' => $orders,
+        ]);
+    }
 }
