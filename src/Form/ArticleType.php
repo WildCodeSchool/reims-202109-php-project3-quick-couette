@@ -12,6 +12,7 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('name', null, ['label' => 'Nom'])
             ->add('width', null, ['label' => 'Largeur'])
             ->add('length', null, ['label' => 'Longueur'])
             ->add('quantity', null, ['label' => 'Quantité'])

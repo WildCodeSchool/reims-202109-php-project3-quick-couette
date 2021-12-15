@@ -22,6 +22,7 @@ class CalculatorType extends AbstractType
                 'by_reference' => false,
             ])
             ->add('name', null, ['label' => 'Nom'])
+            ->add('reference', null, ['label' => 'Référence'])
         ;
     }
 
