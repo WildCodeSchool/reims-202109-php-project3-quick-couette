@@ -8,27 +8,35 @@
 {% endblock %}
 
 {% block body %}
+<main id="calculator-main">
 {{ form_start(form) }}
-    {{ form_label(form.articles) }}
-    {{ form_errors(form.articles) }}
-    <div id="articles"
-        data-prototype="{{ form_widget(form.articles.vars.prototype)|e }}"
-        data-widget-tags="{{ '<div class="calculator-article"></div>'|e }}"
-        data-widget-counter="{{ form.articles|length }}">
-    {% for article_field in form.articles %}
-        <div class="calculator-article">
-            {{ form_errors(article_field) }}
-            {{ form_widget(article_field) }}
+    <div class="calculator-articles-container">
+        {{ form_label(form.articles) }}
+        {{ form_errors(form.articles) }}
+        <div id="calculator-articles"
+            data-prototype="{{ form_widget(form.articles.vars.prototype)|e }}"
+            data-widget-tags="{{ '<div class="calculator-article"></div>'|e }}"
+            data-widget-counter="{{ form.articles|length }}">
+        {% for article_field in form.articles %}
+            <div class="calculator-article">
+                {{ form_errors(article_field) }}
+                {{ form_widget(article_field) }}
+            </div>
+        {% endfor %}
         </div>
-    {% endfor %}
+        <button id="calculator-add" type="button" data-list-selector="#calculator-articles">Ajouter</button>
     </div>
 
-    <button id="calculator-add" type="button" data-list-selector="#articles">Ajouter</button>
 
     <div id="calculator-results">
-        <h1>Resultats ###</h1>
-        {{ form_widget(form) }}
-        <button id="calculator-save">Sauvegarder</button>
+        {# TODO #}
+        <h1>Resultats</h1>
+        <p>Longueur: X<br>Largeur: X</p>
     </div>
+    <div id="calculator-name">
+        {{ form_row(form.name) }}
+    </div>
+    <button id="calculator-save">Sauvegarder</button>
 {{ form_end(form) }}
+</main>
 {% endblock %}
