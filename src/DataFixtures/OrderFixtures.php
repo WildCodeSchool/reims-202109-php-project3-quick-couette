@@ -8,7 +8,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class OrderFixtures extends Fixture
 {
-
     public function load(ObjectManager $manager): void
     {
         $order = new Order();
