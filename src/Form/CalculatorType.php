@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,6 +23,8 @@ class CalculatorType extends AbstractType
                 'by_reference' => false,
             ])
             ->add('name', null, ['label' => 'Nom'])
+            ->add('reference', null, ['label' => 'Référence'])
+            ->add('length', HiddenType::class)
         ;
     }
 
