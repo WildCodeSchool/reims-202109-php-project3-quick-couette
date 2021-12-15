@@ -38,6 +38,11 @@ class Article
      */
     private Order $command;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private string $name;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Article
     public function setCommand(Order $command): self
     {
         $this->command = $command;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
