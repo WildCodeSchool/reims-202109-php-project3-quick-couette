@@ -38,6 +38,16 @@ class Order
      */
     private Collection $articles;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private int $length;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $reference;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -93,6 +103,30 @@ class Order
     public function removeArticle(Article $article): self
     {
         $this->articles->removeElement($article);
+
+        return $this;
+    }
+
+    public function getLength(): ?int
+    {
+        return $this->length;
+    }
+
+    public function setLength(int $length): self
+    {
+        $this->length = $length;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
 
         return $this;
     }
