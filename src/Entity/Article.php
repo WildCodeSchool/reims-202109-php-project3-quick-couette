@@ -21,18 +21,21 @@ class Article
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Veuillez saisir une largeur.")
+     * @Assert\Positive(message="La valeur doit être positive.")
      */
     private int $width;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Veuillez saisir une longueur.")
+     * @Assert\Positive(message="La valeur doit être positive.")
      */
     private int $length;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Veuillez saisir une quantité.")
+     * @Assert\Positive(message="La valeur doit être positive.")
      */
     private int $quantity;
 

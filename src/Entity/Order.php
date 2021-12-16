@@ -36,6 +36,10 @@ class Order
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="command", orphanRemoval=true)
+     * @Assert\Count(
+     *      min = 1,
+     *      minMessage = "Vous devez entrer au minimum un article.",
+     * )
      * @var Collection<Article>
      */
     private Collection $articles;
