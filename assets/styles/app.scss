@@ -37,8 +37,9 @@ body {
 .nav-container li {
     display: table-cell;
     text-align: center;
-    padding-top: 0.5rem;
+    padding: 0.5rem;
 }
+
 .nav-link {
     text-decoration: none;
     color: inherit;
@@ -46,6 +47,6 @@ body {
 
 .navbar-active {
    background-color: $golden-color;
-   color : $black;
+   color: $black;
 }
 
