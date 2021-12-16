@@ -11,14 +11,14 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $articleCount = 10;
+        $articleCount = 8;
         for ($i = 0; $i < $articleCount; $i++) {
             $article = new Article();
             $article->SetName('housse');
             $article->setWidth(230);
             $article->setLength(140);
             $article->setQuantity(3);
-            $article->setCommand($this->getReference('order1'));
+            $article->setCommand($this->getReference('order' . ($i % OrderFixtures::ORDER_COUNT)));
             $manager->persist($article);
             $manager->flush();
         }

@@ -8,10 +8,11 @@ use Doctrine\Persistence\ObjectManager;
 
 class OrderFixtures extends Fixture
 {
+    public const ORDER_COUNT = 2;
+
     public function load(ObjectManager $manager): void
     {
-        $orderCount = 2;
-        for ($i = 0; $i < $orderCount; $i++) {
+        for ($i = 0; $i < self::ORDER_COUNT; $i++) {
             $order = new Order();
             $order->setName('Hotel Mercure :');
             $order->setLength(140);
