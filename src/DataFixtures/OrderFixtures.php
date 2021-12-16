@@ -10,14 +10,15 @@ class OrderFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $order = new Order();
-        $order->setName('Hotel Mercure :');
-
-        $this->addReference('order1', $order);
-        //$this->getReference('order1')
-
-        $manager->persist($order);
-
+        $orderCount = 2;
+        for ($i = 0; $i < $orderCount; $i++) {
+            $order = new Order();
+            $order->setName('Hotel Mercure :');
+            $order->setLength(140);
+            $order->setReference('618118');
+            $this->addReference('order' . $i, $order);
+            $manager->persist($order);
+        }
         $manager->flush();
     }
 }
