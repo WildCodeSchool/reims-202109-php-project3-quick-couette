@@ -8,16 +8,18 @@ use Doctrine\Persistence\ObjectManager;
 
 class OrderFixtures extends Fixture
 {
+    public const ORDER_COUNT = 2;
+
     public function load(ObjectManager $manager): void
     {
-        $order = new Order();
-        $order->setName('Hotel Mercure :');
-
-        $this->addReference('order1', $order);
-        //$this->getReference('order1')
-
-        $manager->persist($order);
-
+        for ($i = 0; $i < self::ORDER_COUNT; $i++) {
+            $order = new Order();
+            $order->setName('Hotel Mercure :');
+            $order->setLength(140);
+            $order->setReference('618118');
+            $this->addReference('order' . $i, $order);
+            $manager->persist($order);
+        }
         $manager->flush();
     }
 }
