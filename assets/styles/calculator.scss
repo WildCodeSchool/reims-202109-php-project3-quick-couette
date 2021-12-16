@@ -2,10 +2,11 @@
     margin: auto;
     min-width: 20vw;
     max-width: fit-content;
+    padding: 1rem 0;
 }
 
-#calculator-articles {
-    margin: 1rem 0;
+%margin-bottom {
+    margin-bottom: 1rem;
 }
 
 %calculator-row {
@@ -28,10 +29,15 @@
     }
 }
 
+#calculator-articles-container,
+#calculator-articles {
+    @extend %margin-bottom;
+}
+
 .calculator-article {
+    @extend %margin-bottom;
     position: relative;
     padding: 1rem;
-    margin-bottom: 1rem;
     background-color: $golden-color;
 
     a {
@@ -57,7 +63,7 @@
     }
 
     > div {
-        margin-bottom: 1rem;
+        @extend %margin-bottom;
     } 
 }
 
@@ -68,9 +74,9 @@
 }
 
 #calculator-results {
+    @extend %margin-bottom;
     display: flex;
     flex-direction: column;
-    margin: 1rem auto;
     padding: 1rem;
     background-color: $golden-color;
     text-align: center;
