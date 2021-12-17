@@ -10,6 +10,11 @@
 {% block body %}
 <main id="calculator-main">
 {{ form_start(form, {attr: {id: 'calculator-form'}}) }}
+    <div id="calculator-name">
+        {{ form_row(form.name) }}
+        {{ form_row(form.reference) }}
+    </div>
+
     <div id="calculator-articles-container">
         {{ form_label(form.articles) }}
         {{ form_errors(form.articles) }}
@@ -27,16 +32,12 @@
         <button id="calculator-add" type="button" data-list-selector="#calculator-articles">Ajouter</button>
     </div>
 
-
     <div id="calculator-results">
         {# TODO #}
         <h1>Resultats</h1>
         <p>Longueur: X<br>Largeur: X</p>
     </div>
-    <div id="calculator-name">
-        {{ form_row(form.name) }}
-        {{ form_row(form.reference) }}
-    </div>
+
     <button id="calculator-save">Sauvegarder</button>
 {{ form_end(form) }}
 </main>
