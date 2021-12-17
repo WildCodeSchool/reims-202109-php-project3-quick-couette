@@ -10,11 +10,6 @@
     margin: 0;
     padding: 0;
 }
-
-body {
-    padding-bottom: 2.5rem;
-}
-
 @import 'calculator.scss';
 @import 'header.scss';
 
@@ -22,28 +17,37 @@ body {
 
 body {
     background-color: $secondary-color;
+    padding-bottom: 2.5rem;
 }
 
 /* ------------------------- navbar ------------------------- */
 
 .nav-container {
     list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    display: table;
     font-size: 30px;
     position: fixed;
     width: 100%;
     bottom: 0;
     border-top: solid;
     border-color: $golden-color;
-    border-width: 5px;
-   
-    
-    align-items: center;
+    background-color: $main-color;
+    color: $white;
+}
+
+.nav-container li {
+    display: table-cell;
+    text-align: center;
+    padding: 0.5rem;
 }
 
 .nav-link {
     text-decoration: none;
-    color: $golden-color;
+    color: inherit;
 }
+
+.navbar-active {
+    background-color: $golden-color;
+    color: $black;
+}
+
