@@ -33,6 +33,7 @@ body {
     border-color: $golden-color;
     background-color: $main-color;
     color: $white;
+    z-index: 1;
 }
 
 .nav-container li {
@@ -50,4 +51,3 @@ body {
     background-color: $golden-color;
     color: $black;
 }
-
