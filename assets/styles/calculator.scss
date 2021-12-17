@@ -58,10 +58,6 @@
 #calculator-name {
     @extend %calculator-row;
 
-    label {
-        color: $golden-color;
-    }
-
     > div {
         @extend %margin-bottom;
     } 
