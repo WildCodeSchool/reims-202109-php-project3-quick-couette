@@ -1,8 +1,10 @@
 @import 'variables.scss';
 
 @mixin button ($size: 1rem) {
-    padding: $size / 3;
-    background-color: $golden-color;
+    border-radius: $size;
+    padding: $size / 2;
+    background-color: $main-color;
+    color: $white;
     font-size: $size;
 }
 
@@ -10,13 +12,14 @@
     margin: 0;
     padding: 0;
 }
+
 @import 'calculator.scss';
 @import 'header.scss';
 
 /* ------------------------- body ------------------------- */
 
 body {
-    background-color: $secondary-color;
+    background-color: $white;
     padding-bottom: 2.5rem;
 }
 
@@ -30,9 +33,9 @@ body {
     width: 100%;
     bottom: 0;
     border-top: solid;
-    border-color: $golden-color;
-    background-color: $main-color;
-    color: $white;
+    border-color: $main-color;
+    background-color: $secondary-color;
+    color: $black;
     z-index: 1;
 }
 
@@ -48,6 +51,6 @@ body {
 }
 
 .navbar-active {
-    background-color: $golden-color;
-    color: $black;
+    background-color: $main-color;
+    color: $white;
 }

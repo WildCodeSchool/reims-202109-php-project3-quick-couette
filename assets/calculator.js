@@ -10,20 +10,6 @@ function getArticles() {
     return document.querySelectorAll('.calculator-article');
 }
 
-function createArticleDeleteLink(articleFormElement) {
-    const removeFormButton = document.createElement('a');
-    removeFormButton.innerText = '✖';
-
-    articleFormElement.append(removeFormButton);
-
-    removeFormButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (getArticles().length > 1) {
-            articleFormElement.remove();
-        }
-    });
-}
-
 function getArticleValues(formData, counter) {
     const getFieldValue = (name) => parseInt(formData.get(`calculator[articles][${counter}][${name}]`), 10);
     const length = getFieldValue('length');
@@ -38,6 +24,7 @@ function ShowResult(counter, formData) {
     const [length, width, quantity] = getArticleValues(formData, counter);
     if (!length || !width || !quantity) {
         resultSpan.parentElement.style.display = 'none';
+        delete resultSpan.dataset.totalLength;
         return;
     }
 
@@ -54,19 +41,25 @@ function ShowResult(counter, formData) {
 }
 
 function ShowTotal(formData) {
+    let errors = 0;
     let total = 0;
     document.querySelectorAll('.article-result').forEach((result) => {
         if (result.dataset.totalLength) {
             total += parseInt(result.dataset.totalLength, 10);
+        } else {
+            errors += 1;
         }
     });
 
     const resultDiv = document.querySelector('#calculator-results');
-    if (!total) {
+    const saveButton = document.querySelector('#calculator-save');
+    if (errors) {
         resultDiv.style.display = 'none';
+        saveButton.style.display = 'none';
         return;
     }
     resultDiv.style.removeProperty('display');
+    saveButton.style.removeProperty('display');
 
     // TODO: Format output
     document.querySelector('#calculator-results > p').innerHTML = `Longueur: ${total}cm`;
@@ -75,8 +68,25 @@ function ShowTotal(formData) {
 
 function RefreshResult(counter) {
     const formData = new FormData(document.querySelector('#calculator-form'));
-    ShowResult(counter, formData);
+    if (counter !== null) {
+        ShowResult(counter, formData);
+    }
     ShowTotal(formData);
+}
+
+function createArticleDeleteLink(articleFormElement) {
+    const removeFormButton = document.createElement('a');
+    removeFormButton.innerText = '✖';
+
+    articleFormElement.append(removeFormButton);
+
+    removeFormButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (getArticles().length > 1) {
+            articleFormElement.remove();
+            RefreshResult(null);
+        }
+    });
 }
 
 function createResultOutput(articleFormElement) {

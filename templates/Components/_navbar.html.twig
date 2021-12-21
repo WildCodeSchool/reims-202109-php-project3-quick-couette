@@ -1,9 +1,9 @@
 <script src="https://kit.fontawesome.com/67991a0794.js" crossorigin="anonymous"></script>
 <ul class="nav-container">
     <li class="nav-items {{ app.request.get("_route") == "calculator_index" ? "navbar-active" : "" }}">
-        <a class="nav-link" href="{{ path('calculator_index') }}"><i class="fas fa-calculator"></i> Calculatrice</a>
+        <a class="nav-link" href="{{ path('calculator_index') }}"><i class="fas fa-calculator"></i></a>
     </li>
     <li class="nav-items {{ app.request.get("_route") == "calculator_history" ? "navbar-active" : "" }}">
-        <a class="nav-link" href="{{ path('calculator_history') }}"><i class="fas fa-history"></i> Historique</a>
+        <a class="nav-link" href="{{ path('calculator_history') }}"><i class="fas fa-history"></i></a>
     </li>
-</ul> 
+</ul>
