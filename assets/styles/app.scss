@@ -8,6 +8,11 @@
     font-size: $size;
 }
 
+%border {
+    border-radius: 1rem;
+    border: 3px solid $main-color;
+}
+
 * {
     margin: 0;
     padding: 0;
