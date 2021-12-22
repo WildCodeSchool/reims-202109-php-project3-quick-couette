@@ -4,31 +4,25 @@
 
 {% block body %}
     <div>
-        <label for="historic-search">Rechercher par nom : </label>
-        <input type="search" id="historic-search" name="historic-search" placeholder="Rechercher ...">
-
-        <button>Rechercher</button>
+        <input type="search" id="history-search" name="history-search" placeholder="Rechercher ...">
     </div>
-
     {% for order in orders %}
         <div>
             <div>
-                <h1>{{ order.name }}</h1>
+                <p>{{ order.name }}</p>
+                <p>Ref : {{ order.reference }}</p>
             </div>
             <div>
                 {% for article in order.articles %}
-                    <p>Longueur : {{ article.length }} / Largeur : {{ article.width }} / Quantité : {{ article.quantity }}</p>
+                    <p>{{ article.name }} : {{ article.length }} x {{ article.width }} qty {{ article.quantity }}</p>
                 {% endfor %}
             </div>
             <div>
-                <h2>Résultat</h2>
-                <p>Longueur</p>
-                <p>Chutes</p>
+                <p>Longueur : {{ order.length }}</p>
+                <p>Date : {{ order.savedAt|date('d/m/Y') }}</p>
             </div>
-            <button>Modifier</button>
+            <button onclick="{{ path('calculator_edit', {id:order.id}) }}'" type="button">Modifier</button>
         </div>
-    {% else %}
-        Aucune commande calculée.
     {% endfor %}
 
 {% endblock %}
