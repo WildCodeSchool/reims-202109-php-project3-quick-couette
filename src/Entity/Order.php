@@ -35,7 +35,7 @@ class Order
     private ?DateTimeInterface $savedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="command", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="command", orphanRemoval=true, cascade={"persist"})
      * @Assert\Count(
      *      min = 1,
      *      minMessage = "Vous devez entrer au minimum un article.",
