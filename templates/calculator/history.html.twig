@@ -21,7 +21,8 @@
                 <p>Longueur : {{ order.length }}</p>
                 <p>Date : {{ order.savedAt|date('d/m/Y') }}</p>
             </div>
-            <button onclick="{{ path('calculator_edit', {id:order.id}) }}'" type="button">Modifier</button>
+            <button onclick="location.href='{{ path('calculator_edit', {id:order.id}) }}'" type="button">Modifier</button>
+            {% include 'calculator/_delete_form.html.twig' %}
         </div>
     {% endfor %}
 
