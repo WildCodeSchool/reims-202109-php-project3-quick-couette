@@ -3,32 +3,34 @@
 {% block title %}Historique{% endblock %}
 
 {% block body %}
+<main id="calculator-main">
     <div>
-        <label for="historic-search">Rechercher par nom : </label>
-        <input type="search" id="historic-search" name="historic-search" placeholder="Rechercher ...">
-
-        <button>Rechercher</button>
+        <input type="search" id="history-search" name="history-search" placeholder="Rechercher ...">
     </div>
-
     {% for order in orders %}
-        <div>
-            <div>
+        <div class="history-result">
+            <div class="history-result-header">
                 <h1>{{ order.name }}</h1>
+                <span>{{ order.reference }}</span>
             </div>
-            <div>
+            <hr>
+            <div class="history-articles">
                 {% for article in order.articles %}
-                    <p>Longueur : {{ article.length }} / Largeur : {{ article.width }} / Quantité : {{ article.quantity }}</p>
+                    <span>{{ article.name }}</span>
+                    <span>{{ article.length }} x {{ article.width }}</span>
+                    <span>Qty {{ article.quantity }}</span>
                 {% endfor %}
             </div>
-            <div>
-                <h2>Résultat</h2>
-                <p>Longueur</p>
-                <p>Chutes</p>
+            <hr>
+            <div class="history-total">
+                <span>Longueur: {{ (order.length / 1000)|round(0, 'ceil') }}m</span>
+                <span>Date: {{ order.savedAt|date('d/m/Y') }}</span>
             </div>
-            <button>Modifier</button>
+            <div class="history-buttons">
+                <button onclick="location.href='{{ path('calculator_edit', {id: order.id}) }}'" type="button">Modifier</button>
+                {% include 'calculator/_delete_form.html.twig' %}
+            </div>
         </div>
-    {% else %}
-        Aucune commande calculée.
     {% endfor %}
-
+</main>
 {% endblock %}

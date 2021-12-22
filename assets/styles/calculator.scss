@@ -12,12 +12,15 @@
 
 %calculator-container {
     @extend %margin-bottom;
+    @extend %border;
     display: flex;
     flex-direction: column;
-    border-radius: 1rem;
-    border: 3px solid $main-color;
-    gap: 2rem;
+    gap: 1rem;
     padding: 2rem;
+}
+
+%calculator-form {
+    @extend %calculator-container;
 
     >div {
         display: flex;
@@ -56,12 +59,12 @@
     }
 
     >div {
-        @extend %calculator-container;
+        @extend %calculator-form;
     }
 }
 
 #calculator-name {
-    @extend %calculator-container;
+    @extend %calculator-form;
 }
 
 #calculator-add {
@@ -75,6 +78,55 @@
     text-align: center;
     background-color: darken($white, 10);
     margin: 2rem 0;
+}
+
+.history-result {
+    @extend %calculator-container;
+    padding: 1rem;
+}
+
+#history-search {
+    @extend %margin-bottom;
+    @extend %border;
+    width: 100%;
+    padding: 0.3rem;
+    background-color: $white;
+}
+
+.history-result-header {
+    text-align: center;
+
+    > h1 {
+        font-size: 1.2rem;
+    }
+}
+
+.history-articles {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+}
+
+.history-total {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.history-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-evenly;
+
+    button {
+        @include button;
+    }
+}
+
+#history-search:focus {
+    outline: none;
+    border-color: $golden-color;
 }
 
 #calculator-save {
