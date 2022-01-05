@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Form\CalculatorType;
+use App\Form\HistorySearchType;
+use App\Repository\OrderRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -39,14 +41,22 @@ class CalculatorController extends AbstractController
     }
 
     #[Route('/history', name: 'history')]
-    public function history(): Response
+    public function history(Request $request, OrderRepository $orderRepository): Response
     {
-        $orders = $this->getDoctrine()
-            ->getRepository(Order::class)
-            ->findAll();
+        $form = $this->createForm(HistorySearchType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var string */
+            $search = $form->get('search')->getData();
+            $orders = $orderRepository->findLikeNameOrReference($search);
+        } else {
+            $orders = $orderRepository->findAll();
+        }
 
         return $this->render('calculator/history.html.twig', [
             'orders' => $orders,
+            'searchForm' => $form->createView(),
         ]);
     }
 

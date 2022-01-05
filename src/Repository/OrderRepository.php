@@ -19,6 +19,22 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
+    /**
+     * @return Order[] Returns an array of Order objects
+     */
+    public function findLikeNameOrReference(string $search): array
+    {
+        /** @var Order[] */
+        $orders = $this->createQueryBuilder('o')
+            ->orWhere('o.name LIKE :search')
+            ->orWhere('o.reference LIKE :search')
+            ->setParameter('search', "%$search%")
+            ->getQuery()
+            ->getResult()
+        ;
+        return $orders;
+    }
+
     // /**
     //  * @return Order[] Returns an array of Order objects
     //  */

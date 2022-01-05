@@ -14,7 +14,7 @@ class OrderFixtures extends Fixture
     {
         for ($i = 0; $i < self::ORDER_COUNT; $i++) {
             $order = new Order();
-            $order->setName('Hotel Mercure :');
+            $order->setName('Hotel Mercure ' . ($i + 1));
             $order->setLength(140);
             $order->setReference('618118');
             $this->addReference('order' . $i, $order);
