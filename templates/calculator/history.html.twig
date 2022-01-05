@@ -4,9 +4,9 @@
 
 {% block body %}
 <main id="calculator-main">
-    <div>
-        <input type="search" id="history-search" name="history-search" placeholder="Rechercher ...">
-    </div>
+    {{ form_start(searchForm) }}
+    {{ form_widget(searchForm.search, {required: false, id: 'history-search', 'attr': {'placeholder': 'Rechercher ...'}}) }}
+    {{ form_end(searchForm) }}
     {% for order in orders %}
         <div class="history-result">
             <div class="history-result-header">
@@ -31,6 +31,8 @@
                 {% include 'calculator/_delete_form.html.twig' %}
             </div>
         </div>
+    {% else %}
+        <h1>Aucune commande trouvée</h1>
     {% endfor %}
 </main>
 {% endblock %}
