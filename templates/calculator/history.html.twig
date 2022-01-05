@@ -3,7 +3,7 @@
 {% block title %}Historique{% endblock %}
 
 {% block body %}
-<main id="calculator-main">
+<main id="main">
     {{ form_start(searchForm) }}
     {{ form_widget(searchForm.search, {required: false, id: 'history-search', 'attr': {'placeholder': 'Rechercher ...'}}) }}
     {{ form_end(searchForm) }}
