@@ -1,4 +1,4 @@
-#calculator-main {
+#main {
     margin: auto;
     min-width: 20vw;
     max-width: fit-content;
@@ -85,14 +85,6 @@
     padding: 1rem;
 }
 
-#history-search {
-    @extend %margin-bottom;
-    @extend %border;
-    width: 100%;
-    padding: 0.3rem;
-    background-color: $white;
-}
-
 .history-result-header {
     text-align: center;
 
@@ -122,11 +114,6 @@
     button {
         @include button;
     }
-}
-
-#history-search:focus {
-    outline: none;
-    border-color: $golden-color;
 }
 
 #calculator-save {
