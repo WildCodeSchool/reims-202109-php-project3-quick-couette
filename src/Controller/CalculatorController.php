@@ -33,7 +33,7 @@ class CalculatorController extends AbstractController
     }
 
     #[Route('/', name: 'index')]
-    #[IsGranted('ROLE_ADMINISTRATOR')]
+    #[IsGranted('ROLE_USER')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $order = new Order();
@@ -61,14 +61,14 @@ class CalculatorController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit')]
-    #[IsGranted('ROLE_ADMINISTRATOR')]
+    #[IsGranted('ROLE_USER')]
     public function edit(Request $request, EntityManagerInterface $entityManager, Order $order): Response
     {
         return $this->generateForm($order, $request, $entityManager);
     }
 
     #[Route('/{id}/delete', name: 'delete')]
-    #[IsGranted('ROLE_ADMINISTRATOR')]
+    #[IsGranted('ROLE_USER')]
     public function delete(Request $request, EntityManagerInterface $entityManager, Order $order): Response
     {
         $token = (string)$request->request->get('_token');
