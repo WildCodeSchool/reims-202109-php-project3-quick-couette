@@ -6,6 +6,7 @@ use App\Entity\Order;
 use App\Form\CalculatorType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +31,7 @@ class CalculatorController extends AbstractController
     }
 
     #[Route('/', name: 'index')]
+    #[IsGranted('ROLE_ADMINISTRATOR')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $order = new Order();
@@ -49,12 +51,14 @@ class CalculatorController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit')]
+    #[IsGranted('ROLE_ADMINISTRATOR')]
     public function edit(Request $request, EntityManagerInterface $entityManager, Order $order): Response
     {
         return $this->generateForm($order, $request, $entityManager);
     }
 
     #[Route('/{id}/delete', name: 'delete')]
+    #[IsGranted('ROLE_ADMINISTRATOR')]
     public function delete(Request $request, EntityManagerInterface $entityManager, Order $order): Response
     {
         $token = (string)$request->request->get('_token');
