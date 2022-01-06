@@ -13,6 +13,10 @@
     border: 3px solid $main-color;
 }
 
+%margin-bottom {
+    margin-bottom: 1rem;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -40,26 +44,43 @@
 
 body {
     background-color: $white;
-    padding-bottom: 2.5rem;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#main {
+    flex-grow: 1;
+    margin: auto;
+    padding: 2rem 0;
+    min-width: 20vw;
+    max-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* ------------------------- navbar ------------------------- */
 
-.nav-container {
+.navbar ul {
     list-style-type: none;
     display: table;
+}
+.navbar {
     font-size: 30px;
-    position: fixed;
-    width: 100%;
+    position: sticky;
     bottom: 0;
+    width: 100%;
     border-top: solid;
     border-color: $main-color;
     background-color: $secondary-color;
     color: $black;
-    z-index: 1;
 }
 
-.nav-container li {
+.navbar li {
     display: table-cell;
     text-align: center;
     padding: 0.5rem;
