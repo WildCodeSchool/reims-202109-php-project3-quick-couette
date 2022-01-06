@@ -10,3 +10,10 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+const navBar = document.querySelector('.navbar');
+function navbarSize() {
+    document.documentElement.style.setProperty('--navbar-height', `${navBar.offsetHeight}px`);
+}
+navbarSize();
+new ResizeObserver(navbarSize).observe(navBar);
