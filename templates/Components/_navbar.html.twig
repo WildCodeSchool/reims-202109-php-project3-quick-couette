@@ -1,11 +1,21 @@
 <script src="https://kit.fontawesome.com/67991a0794.js" crossorigin="anonymous"></script>
 <nav class="navbar">
     <ul>
-        <li class="nav-items {{ app.request.get("_route") == "calculator_index" ? "navbar-active" : "" }}">
+        <li class="nav-item {{ app.request.get("_route") in ["calculator_index", "calculator_edit"] ? "navbar-active" : "" }}">
             <a class="nav-link" href="{{ path('calculator_index') }}"><i class="fas fa-calculator"></i></a>
         </li>
-        <li class="nav-items {{ app.request.get("_route") == "calculator_history" ? "navbar-active" : "" }}">
+        <li class="nav-item {{ app.request.get("_route") == "calculator_history" ? "navbar-active" : "" }}">
             <a class="nav-link" href="{{ path('calculator_history') }}"><i class="fas fa-history"></i></a>
         </li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('logout') }}"><i class="fas fa-user-alt"></i></a>
+                <span>{{ app.user.email }}<br>Se déconnecter</span>
+            </li>
+        {% else %}
+            <li class="nav-item {{ app.request.get("_route") == "login" ? "navbar-active" : "" }}">
+                <a class="nav-link" href="{{ path('login') }}"><i class="fas fa-user"></i></a>
+            </li>
+        {% endif %}
     </ul>
 </nav>
