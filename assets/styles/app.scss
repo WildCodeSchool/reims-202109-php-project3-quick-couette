@@ -52,7 +52,7 @@ body {
     min-height: 100vh;
 }
 
-#main {
+.main {
     flex-grow: 1;
     margin: auto;
     padding: 2rem 0;
@@ -61,6 +61,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.justify-start {
+    justify-content: start;
 }
 
 /* ------------------------- navbar ------------------------- */
