@@ -143,3 +143,5 @@ document.querySelector('#calculator-form').addEventListener('input', (event) => 
     }
     RefreshResult(match.groups.counter);
 });
+
+document.querySelector('.main-calculator').style.visibility = 'visible';

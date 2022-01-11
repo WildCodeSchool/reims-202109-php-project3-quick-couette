@@ -115,3 +115,7 @@
     align-self: center;
     @include button(1.5rem);
 }
+
+.main-calculator {
+    visibility: hidden;
+}
