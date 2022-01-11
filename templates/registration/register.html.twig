@@ -3,14 +3,14 @@
 {% block title %}Enregistrement{% endblock %}
 
 {% block body %}
-<main class="main">
-<h1 class="registration-title">Enregistrement</h1>
-    <div class="form-container">
-        {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.email, {'attr': {class: 'input'}}) }}
-            {{ form_row(registrationForm.repeatedPassword, {'attr': {class: 'input', 'placeholder': 'Mot de passe'}}) }}
-        <button type="submit" class="login-submit">Enregistrement</button>
-        {{ form_end(registrationForm) }}
-    </div>
-</main>
+  <main class="main">
+    <h1 class="registration-title">Enregistrement</h1>
+      <div class="form-container">
+          {{ form_start(registrationForm) }}
+              {{ form_row(registrationForm.email, {'attr': {class: 'input'}}) }}
+              {{ form_row(registrationForm.repeatedPassword, {'attr': {class: 'input', 'placeholder': 'Mot de passe'}}) }}
+          <button type="submit" class="login-submit">Enregistrement</button>
+          {{ form_end(registrationForm) }}
+      </div>
+  </main>
 {% endblock %}
