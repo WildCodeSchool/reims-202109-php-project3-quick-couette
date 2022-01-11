@@ -71,6 +71,19 @@ input {
     justify-content: start;
 }
 
+.connexion-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.registration-title {
+    margin-bottom: 3rem;
+}
+
+.deconnexion-text {
+    text-align: center;
+}
+
 /* ------------------------- navbar ------------------------- */
 
 .navbar {
