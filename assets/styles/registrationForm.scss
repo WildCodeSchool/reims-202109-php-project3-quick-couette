@@ -1,7 +1,10 @@
-.form-container {
-    @extend %calculator-container;
-}
-.registration-button{
+@import 'variables.scss';
+
+.registration-button {
     @include button;
     width: 100%;
+}
+.registration-title {
+    color: $main-color;
+    padding-bottom: 1rem;
 }
