@@ -1,0 +1,7 @@
+.form-container {
+    @extend %calculator-container;
+}
+.registration-button{
+    @include button;
+    width: 100%;
+}
