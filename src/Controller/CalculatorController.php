@@ -51,7 +51,10 @@ class CalculatorController extends AbstractController
             $search = $form->get('search')->getData();
             $orders = $orderRepository->findLikeNameOrReference($search);
         } else {
-            $orders = $orderRepository->findAll();
+            $orders = $orderRepository->findBy(
+                [],
+                ['savedAt' => 'DESC']
+            );
         }
 
         return $this->render('calculator/history.html.twig', [
