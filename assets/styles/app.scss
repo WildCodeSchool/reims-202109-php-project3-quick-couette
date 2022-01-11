@@ -27,7 +27,6 @@
     @extend %border;
     width: 100%;
     padding: 0.3rem;
-    background-color: $white;
     box-sizing: border-box;
 }
 
@@ -39,10 +38,15 @@
 @import 'calculator.scss';
 @import 'header.scss';
 @import 'login.scss';
+@import 'registrationForm.scss';
 
 /* ------------------------- body ------------------------- */
 
 body {
+    background-color: $light-blue;
+}
+
+input {
     background-color: $white;
 }
 
