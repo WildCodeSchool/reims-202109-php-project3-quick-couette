@@ -19,7 +19,7 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('RepeatedPassword', RepeatedType::class, [
+            ->add('repeatedPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'les mots de passe doivent être identiques.',
                 // instead of being set onto the object directly,
