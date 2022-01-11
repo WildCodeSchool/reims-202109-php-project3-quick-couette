@@ -13,8 +13,8 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('name', null, ['label' => 'Nom'])
-            ->add('length', null, ['label' => 'Longueur'])
-            ->add('width', null, ['label' => 'Largeur'])
+            ->add('length', null, ['label' => 'Longueur (en cm)'])
+            ->add('width', null, ['label' => 'Largeur (en cm)'])
             ->add('quantity', null, ['label' => 'Quantité'])
         ;
     }
