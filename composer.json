@@ -55,6 +55,7 @@
         "phpstan/phpstan": "*",
         "phpstan/phpstan-doctrine": "*",
         "phpstan/phpstan-symfony": "*",
+        "phpunit/phpunit": "^9.5",
         "povils/phpmnd": "^2.4",
         "sebastian/phpcpd": "^6.0",
         "squizlabs/php_codesniffer": "*",
@@ -72,7 +73,13 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "phpro/grumphp": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
     },
     "autoload": {
         "psr-4": {
