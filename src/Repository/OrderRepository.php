@@ -22,12 +22,15 @@ class OrderRepository extends ServiceEntityRepository
     /**
      * @return Order[] Returns an array of Order objects
      */
-    public function findLikeNameOrReference(string $search): array
+    public function findLikeNameOrReference(string $search, int $offset, int $limit): array
     {
         /** @var Order[] */
         $orders = $this->createQueryBuilder('o')
             ->orWhere('o.name LIKE :search')
             ->orWhere('o.reference LIKE :search')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->orderBy('o.savedAt', 'DESC')
             ->setParameter('search', "%$search%")
             ->getQuery()
             ->getResult()

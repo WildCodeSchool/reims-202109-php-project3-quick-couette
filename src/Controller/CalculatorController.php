@@ -41,25 +41,31 @@ class CalculatorController extends AbstractController
     }
 
     #[Route('/history', name: 'history')]
-    public function history(Request $request, OrderRepository $orderRepository): Response
+    public function history(Request $request, OrderRepository $orderRepository ): Response
     {
         $form = $this->createForm(HistorySearchType::class);
         $form->handleRequest($request);
 
+        $page = $request->query->get('page', 1);
+        $limit = $request->query->get('limit', 4);
+        $offset = ($page - 1 ) * $limit;
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string */
             $search = $form->get('search')->getData();
-            $orders = $orderRepository->findLikeNameOrReference($search);
+            $orders = $orderRepository->findLikeNameOrReference($search, $offset, $limit);
         } else {
             $orders = $orderRepository->findBy(
                 [],
-                ['savedAt' => 'DESC']
+                ['savedAt' => 'DESC'],
+                $limit,
+                $offset
             );
         }
 
         return $this->render('calculator/history.html.twig', [
             'orders' => $orders,
             'searchForm' => $form->createView(),
+            'page' => $page,
         ]);
     }
 

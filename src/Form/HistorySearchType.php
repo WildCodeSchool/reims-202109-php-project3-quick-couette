@@ -13,6 +13,7 @@ class HistorySearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->setMethod('GET')
             ->add('search', SearchType::class, [
                 'constraints' => [
                     new NotBlank(),
@@ -24,7 +25,7 @@ class HistorySearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'csrf_protection' => false,
         ]);
     }
 }
