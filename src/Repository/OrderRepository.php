@@ -30,12 +30,27 @@ class OrderRepository extends ServiceEntityRepository
             ->orWhere('o.reference LIKE :search')
             ->setFirstResult($offset)
             ->setMaxResults($limit)
-            ->orderBy('o.savedAt', 'DESC')
+            ->addOrderBy('o.savedAt', 'DESC')
+            ->addOrderBy('o.id', 'DESC')
             ->setParameter('search', "%$search%")
             ->getQuery()
             ->getResult()
         ;
         return $orders;
+    }
+
+    public function findLikeNameOrReferenceCount(string $search): int
+    {
+        /** @var int */
+        $count = $this->createQueryBuilder('o')
+            ->select('COUNT(o)')
+            ->orWhere('o.name LIKE :search')
+            ->orWhere('o.reference LIKE :search')
+            ->setParameter('search', "%$search%")
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+        return $count;
     }
 
     // /**

@@ -4,9 +4,29 @@
 
 {% block body %}
 <main class="main justify-start">
-    {{ form_start(searchForm) }}
-    {{ form_widget(searchForm.search, {required: false, 'attr': {class: 'input', 'placeholder': 'Rechercher...'}}) }}
-    {{ form_end(searchForm) }}
+    <form method="get">
+        <input type="search" name="search" class="input" placeholder="Rechercher..." value="{{ app.request.query.get('search') }}">
+    </form>
+    <div class="history-pages">
+        {% if (total_pages - current_page)|abs > (current_page - 1) %}
+            {% set page_min = max(1, current_page - 5) %}
+            {% set page_max = min(total_pages, page_min + 10) %}
+        {% else %}
+            {% set page_max = min(total_pages, current_page + 5) %}
+            {% set page_min = max(1, page_max - 10) %}
+        {% endif %}
+        {% for page_number in page_min..page_max %}
+            {% set uri = path(
+                    app.request.attributes.get('_route'),
+                    app.request.query|merge({'page': page_number})
+            ) %}
+            {% if page_number == current_page %}
+                <span>{{ page_number }}</span>
+            {% else %}
+                <a href="{{ uri }}">{{ page_number }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
     {% for order in orders %}
         <div class="history-result">
             <div class="history-result-header">

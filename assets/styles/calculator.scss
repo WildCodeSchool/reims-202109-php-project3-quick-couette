@@ -109,6 +109,15 @@
     }
 }
 
+.history-pages {
+    text-align: center;
+
+    > * {
+        display: inline-block;
+        width: 1rem;
+    }
+}
+
 #calculator-save {
     position: sticky;
     bottom: calc(var(--navbar-height, 3rem) + 2rem);
