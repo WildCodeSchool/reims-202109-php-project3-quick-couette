@@ -21,9 +21,9 @@
                     app.request.query|merge({'page': page_number})
             ) %}
             {% if page_number == current_page %}
-                <span>{{ page_number }}</span>
+                <span class="active">{{ page_number }}</span>
             {% else %}
-                <a href="{{ uri }}">{{ page_number }}</a>
+                <a href="{{ uri }}">{{ page_number }} </a>
             {% endif %}
         {% endfor %}
     </div>
