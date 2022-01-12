@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class OrderFixtures extends Fixture
 {
-    public const ORDER_COUNT = 50;
+    public const ORDER_COUNT = 2;
 
     public function load(ObjectManager $manager): void
     {

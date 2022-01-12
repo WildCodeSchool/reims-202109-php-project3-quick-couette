@@ -11,7 +11,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $articleCount = 50;
+        $articleCount = 8;
         for ($i = 0; $i < $articleCount; $i++) {
             $article = new Article();
             $article->SetName('housse');

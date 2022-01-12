@@ -117,22 +117,17 @@
         color: $main-color;
         margin-bottom: 1rem;
     }
-
     > *:hover {
         text-decoration: underline;
     }
-
     > * + * {
         margin-left: 0.5rem;
     }
-
     .active {
         color: $black;
         font-weight: bold;
     }
 }
-
-
 
 #calculator-save {
     position: sticky;
