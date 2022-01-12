@@ -5,7 +5,7 @@
 {% block body %}
 <main class="main justify-start">
     {{ form_start(searchForm) }}
-    {{ form_widget(searchForm.search, {required: false, 'attr': {class: 'input', 'placeholder': 'Rechercher ...'}}) }}
+    {{ form_widget(searchForm.search, {required: false, 'attr': {class: 'input', 'placeholder': 'Rechercher...'}}) }}
     {{ form_end(searchForm) }}
     {% for order in orders %}
         <div class="history-result">

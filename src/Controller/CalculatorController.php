@@ -41,7 +41,7 @@ class CalculatorController extends AbstractController
     }
 
     #[Route('/history', name: 'history')]
-    public function history(Request $request, OrderRepository $orderRepository ): Response
+    public function history(Request $request, OrderRepository $orderRepository): Response
     {
         $form = $this->createForm(HistorySearchType::class);
         $form->handleRequest($request);
