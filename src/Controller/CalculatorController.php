@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Form\CalculatorType;
-use App\Form\HistorySearchType;
 use App\Repository\OrderRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,31 +42,30 @@ class CalculatorController extends AbstractController
     #[Route('/history', name: 'history')]
     public function history(Request $request, OrderRepository $orderRepository): Response
     {
-        $form = $this->createForm(HistorySearchType::class);
-        $form->handleRequest($request);
-
+        $search = $request->query->get('search');
         $page = $request->query->get('page', '1');
         $limit = $request->query->get('limit', '4');
         $page = max(intval($page), 1);
         $limit = max(intval($limit), 1);
         $offset = ($page - 1) * $limit;
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string */
-            $search = $form->get('search')->getData();
+
+        if (!empty($search)) {
             $orders = $orderRepository->findLikeNameOrReference($search, $offset, $limit);
+            $count = $orderRepository->findLikeNameOrReferenceCount($search);
         } else {
             $orders = $orderRepository->findBy(
                 [],
-                ['savedAt' => 'DESC'],
+                ['savedAt' => 'DESC', 'id' => 'DESC'],
                 $limit,
                 $offset
             );
+            $count = $orderRepository->count([]);
         }
 
         return $this->render('calculator/history.html.twig', [
             'orders' => $orders,
-            'searchForm' => $form->createView(),
-            'page' => $page,
+            'current_page' => $page,
+            'total_pages' => ceil($count / $limit),
         ]);
     }
 
