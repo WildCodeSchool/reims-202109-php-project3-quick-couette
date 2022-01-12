@@ -7,8 +7,8 @@
         <li class="nav-item {{ app.request.get("_route") == "calculator_history" ? "navbar-active" : "" }}">
             <a class="nav-link" href="{{ path('calculator_history') }}"><i class="fas fa-history"></i></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('user_show') }}"><i class="fas fa-user"></i></a>
+        <li class="nav-item {{ app.request.get("_route") in ["profile_index", "login"] ? "navbar-active" : "" }}">
+            <a class="nav-link" href="{{ path('profile_index') }}"><i class="fas fa-user"></i></a>
         </li>
     </ul>
 </nav>

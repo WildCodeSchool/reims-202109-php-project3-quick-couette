@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <main class="main">
+        <div class="connection-container">
+            <h1 class="registration-title">Profil</h1>
+            <div class="disconnection-text">
+                <p>
+                    Vous êtes connecté {{ app.user.email }}<br>
+                    <a href="{{ path('logout') }}">Se déconnecter</a>
+                </p>
+            </div>
+        </div>
+    </main>
+{% endblock %}
