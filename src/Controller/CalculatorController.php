@@ -46,9 +46,11 @@ class CalculatorController extends AbstractController
         $form = $this->createForm(HistorySearchType::class);
         $form->handleRequest($request);
 
-        $page = $request->query->get('page', 1);
-        $limit = $request->query->get('limit', 4);
-        $offset = ($page - 1 ) * $limit;
+        $page = $request->query->get('page', '1');
+        $limit = $request->query->get('limit', '4');
+        $page = max(intval($page), 1);
+        $limit = max(intval($limit), 1);
+        $offset = ($page - 1) * $limit;
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string */
             $search = $form->get('search')->getData();
