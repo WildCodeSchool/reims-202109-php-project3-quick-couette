@@ -8,16 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 
-#[Route('/profil', name: 'user_')]
-class UserController extends AbstractController
+#[Route('/profile', name: 'profile_')]
+class ProfileController extends AbstractController
 {
-    #[Route('/', name: 'show')]
-    /**
-    * @IsGranted("IS_AUTHENTICATED_FULLY")
-    */
+    #[Route('/', name: 'index')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function index(): Response
     {
-        return $this->render('user/show.html.twig', [
+        return $this->render('profile/index.html.twig', [
         ]);
     }
 }
