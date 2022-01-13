@@ -55,6 +55,21 @@ class Order
      */
     private string $reference;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private int $width;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private int $withdrawLength;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private int $withdrawWidth;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -134,6 +149,42 @@ class Order
     public function setReference(string $reference): self
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getWidth(): ?int
+    {
+        return $this->width;
+    }
+
+    public function setWidth(int $width): self
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    public function getWithdrawLength(): ?int
+    {
+        return $this->withdrawLength;
+    }
+
+    public function setWithdrawLength(int $withdrawLength): self
+    {
+        $this->withdrawLength = $withdrawLength;
+
+        return $this;
+    }
+
+    public function getWithdrawWidth(): ?int
+    {
+        return $this->withdrawWidth;
+    }
+
+    public function setWithdrawWidth(int $withdrawWidth): self
+    {
+        $this->withdrawWidth = $withdrawWidth;
 
         return $this;
     }
