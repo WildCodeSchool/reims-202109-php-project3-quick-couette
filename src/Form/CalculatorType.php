@@ -24,6 +24,9 @@ class CalculatorType extends AbstractType
             ])
             ->add('name', null, ['label' => 'Nom'])
             ->add('reference', null, ['label' => 'Référence'])
+            ->add('width', null, ['label' => 'Laize (cm)'])
+            ->add('withdrawLength', null, ['label' => 'Retrait en longueur (%)'])
+            ->add('withdrawWidth', null, ['label' => 'Retrait en largeur (%)'])
             ->add('length', HiddenType::class)
         ;
     }
