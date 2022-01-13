@@ -30,8 +30,8 @@
     {% for order in orders %}
         <div class="history-result">
             <div class="history-result-header">
-                <h1>{{ order.name }}</h1>
-                <span>{{ order.reference }}</span>
+                <h1>{{ order.name }} / Référence: {{ order.reference }}</h1>
+                <p><em>Laize</em>: {{ order.width }}cm<br><em>Retrait</em>: Longueur {{ order.withdrawLength }}% / Largeur {{ order.withdrawWidth }}%</p>
             </div>
             <hr>
             <div class="history-articles">
