@@ -28,6 +28,9 @@ class OrderFixtures extends Fixture
                     ->setName("$name " . ($i + 1))
                     ->setReference(substr(md5($name . $i), 0, 5))
                     ->setLength(180000)
+                    ->setWidth(290)
+                    ->setWithdrawLength(1)
+                    ->setWithdrawWidth(1)
                 ;
                 $this->addReference("order_{$name}_{$i}", $order);
                 $manager->persist($order);
