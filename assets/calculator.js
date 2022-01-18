@@ -77,6 +77,7 @@ function RefreshResult(counter) {
 function createArticleDeleteLink(articleFormElement) {
     const removeFormButton = document.createElement('a');
     removeFormButton.innerText = '✖';
+    removeFormButton.href = '#';
 
     articleFormElement.append(removeFormButton);
 

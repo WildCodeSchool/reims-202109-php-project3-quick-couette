@@ -63,6 +63,8 @@
         padding: 0.5rem;
         font-size: 1.2rem;
         color: $main-color;
+        user-select: none;
+        text-decoration: none;
     }
 
     >div {
