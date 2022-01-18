@@ -1,22 +1,18 @@
-@import 'variables.scss';
-
-.logo {
-    width: 100px;
-    float: left;
-    padding : 1rem;
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 15px;
+    background-color: $main-color;
+    color: $golden-color;
+    height: 5rem;
 }
 
-.header {
-    text-align: center;
-    background: $main-color;
-    color: $golden-color;
-    font-size: 15px;
-    padding-top: 1rem;
-    padding-bottom: 2rem;
-  }
+.title {
+    display: flex;
+    justify-content: center;
+}
 
-.slogan{
-    margin-top: 1rem;
-    color: #ffffff;
-    font-size: 1.2rem;
+.logo  {
+    width: 60px;
 }
