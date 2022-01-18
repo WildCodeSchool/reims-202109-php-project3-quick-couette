@@ -135,9 +135,9 @@ if (!articles.length) {
 }
 
 getAddArticleButton().addEventListener('click', (e) => {
-    const oldHeight = document.body.clientHeight;
+    const oldOffset = e.target.offsetTop;
     addArticle();
-    window.scrollBy(0, document.body.clientHeight - oldHeight);
+    window.scrollBy(0, e.target.offsetTop - oldOffset);
 });
 
 document.querySelector('#calculator-form').addEventListener('input', (event) => {
