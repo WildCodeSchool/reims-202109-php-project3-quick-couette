@@ -1,10 +1,23 @@
 %calculator-container {
-    @extend %margin-bottom;
-    @extend %border;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 2rem;
+}
+
+%calculator-fieldset {
+    @extend %margin-bottom;
+    @extend %border;
+
+    legend {
+        padding: 0 0.5rem;
+        margin-left: 2rem;
+        font-size: 1.5rem;
+    }
+
+    > div {
+        padding-top: 1.5rem;
+    }
 }
 
 %calculator-form {
@@ -39,13 +52,14 @@
 }
 
 .calculator-article {
+    @extend %calculator-fieldset;
     position: relative;
 
     a {
         display: block;
         position: absolute;
         right: 0;
-        top: 0;
+        top: -1rem;
         padding: 0.5rem;
         font-size: 1.2rem;
         color: $main-color;
@@ -57,7 +71,11 @@
 }
 
 #calculator-name {
-    @extend %calculator-form;
+    @extend %calculator-fieldset;
+
+    >div {
+        @extend %calculator-form;
+    }
 }
 
 #calculator-add {
@@ -67,6 +85,8 @@
 }
 
 #calculator-results {
+    @extend %margin-bottom;
+    @extend %border;
     @extend %calculator-container;
     text-align: center;
     background-color: darken($white, 10);
@@ -74,6 +94,8 @@
 }
 
 .history-result {
+    @extend %margin-bottom;
+    @extend %border;
     @extend %calculator-container;
     padding: 1rem;
 }
