@@ -134,7 +134,9 @@ if (!articles.length) {
 }
 
 getAddArticleButton().addEventListener('click', (e) => {
+    const oldHeight = document.body.clientHeight;
     addArticle();
+    window.scrollBy(0, document.body.clientHeight - oldHeight);
 });
 
 document.querySelector('#calculator-form').addEventListener('input', (event) => {

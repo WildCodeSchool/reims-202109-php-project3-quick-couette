@@ -45,6 +45,7 @@
 /* ------------------------- body ------------------------- */
 
 body {
+    overflow-y: scroll;
     background-color: $light-blue;
     font-family: 'Noto Sans', sans-serif;
 }
