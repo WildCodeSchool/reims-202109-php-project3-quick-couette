@@ -10,26 +10,30 @@
 {% block body %}
 <main class="main main-calculator">
 {{ form_start(form, {attr: {id: 'calculator-form'}}) }}
-    <div id="calculator-name">
-        {{ form_row(form.name) }}
-        {{ form_row(form.reference) }}
-        {{ form_row(form.width) }}
-        {{ form_row(form.withdrawLength) }}
-        {{ form_row(form.withdrawWidth) }}
-    </div>
+    <fieldset id="calculator-name">
+        <legend>Commande</legend>
+        <div>
+            {{ form_row(form.name) }}
+            {{ form_row(form.reference) }}
+            {{ form_row(form.width) }}
+            {{ form_row(form.withdrawLength) }}
+            {{ form_row(form.withdrawWidth) }}
+        </div>
+    </fieldset>
 
     <div id="calculator-articles-container">
         {{ form_label(form.articles) }}
         {{ form_errors(form.articles) }}
         <div id="calculator-articles"
             data-prototype="{{ form_widget(form.articles.vars.prototype)|e }}"
-            data-widget-tags="{{ '<div class="calculator-article"></div>'|e }}"
+            data-widget-tags="{{ '<fieldset class="calculator-article"><legend></legend></fieldset>'|e }}"
             data-widget-counter="{{ form.articles|length }}">
         {% for article_field in form.articles %}
-            <div class="calculator-article">
+            <fieldset class="calculator-article">
+                <legend>Article {{ loop.index }}</legend>
                 {{ form_errors(article_field) }}
                 {{ form_widget(article_field) }}
-            </div>
+            </fieldset>
         {% endfor %}
         </div>
         <button id="calculator-add" type="button" data-list-selector="#calculator-articles">Ajouter</button>

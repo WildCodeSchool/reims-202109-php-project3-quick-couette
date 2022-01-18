@@ -114,9 +114,10 @@ function addArticle() {
     let newElem = document.createElement('div');
     newElem.innerHTML = container.dataset.widgetTags;
     newElem = newElem.firstChild;
-    newElem.innerHTML = newWidget;
+    newElem.innerHTML += newWidget;
 
     container.appendChild(newElem);
+    newElem.querySelector('legend').textContent = `Article ${counter}`;
 
     createArticleDeleteLink(newElem);
     createResultOutput(newElem);
