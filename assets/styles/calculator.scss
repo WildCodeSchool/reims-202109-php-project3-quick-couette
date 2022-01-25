@@ -178,7 +178,7 @@
         gap: 1rem;
     }
 
-     #calculator-name{
+     #calculator-name {
         margin-right: 2rem;
     }
 
@@ -188,13 +188,15 @@
         flex-wrap: wrap;
         justify-content: center;
     }
-    #calculator-add{
+    #calculator-add {
         font-size: 50px;
     }
     
-    #calculator-name legend, .calculator-article legend {
+    #calculator-name legend,
+    .calculator-article legend {
         font-size: 2rem;
     }
+    
     .title{
         font-size: 50px;
     }
