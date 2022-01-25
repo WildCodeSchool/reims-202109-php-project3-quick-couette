@@ -22,6 +22,7 @@ class UserFixtures extends Fixture
         $admin->setPassword($hashedPassword);
 
         $manager->persist($admin);
+        $this->addReference("user_admin", $admin);
 
         $user = new User();
         $user->setEmail('user@quick-couette.fr');
@@ -29,6 +30,7 @@ class UserFixtures extends Fixture
         $user->setPassword($hashedPassword);
 
         $manager->persist($user);
+        $this->addReference("user_user", $user);
 
         $manager->flush();
     }

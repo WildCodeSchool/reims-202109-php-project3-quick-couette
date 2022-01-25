@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Order;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class OrderFixtures extends Fixture
+class OrderFixtures extends Fixture implements DependentFixtureInterface
 {
     public const COUNT = 20;
 
@@ -22,6 +23,7 @@ class OrderFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        $user = $this->getReference('user_user');
         foreach (self::NAMES as $name) {
             for ($i = 0; $i < self::COUNT; ++$i) {
                 $order = (new Order())
@@ -31,11 +33,20 @@ class OrderFixtures extends Fixture
                     ->setWidth(290)
                     ->setWithdrawLength(1)
                     ->setWithdrawWidth(1)
+                    ->setStatus(Order::STATUS_NOT_A_COMMAND)
+                    ->setUser($user)
                 ;
                 $this->addReference("order_{$name}_{$i}", $order);
                 $manager->persist($order);
             }
         }
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+          UserFixtures::class,
+        ];
     }
 }
