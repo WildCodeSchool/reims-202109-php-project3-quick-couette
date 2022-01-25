@@ -6,17 +6,19 @@
 <main class="main main-store">
     <h1 class="registration-title">Nos produits</h1>
     {{ form_start(form, {attr: {onsubmit: "return confirm('Confirmez-vous cette commande ?');"}}) }}
-    {% for article in articles %}
-        <div class="store-article">
-            <img src="{{ asset('build/images/product.jpg') }}">
-            <div>
-                <h2>{{ article.name }}</h2>
-                <p>{{ article.length }}cm x {{ article.width }}cm</p>
-                {{ form_row(form['quantity_' ~ loop.index0], {label: 'Quantité', attr: {min: 0}}) }}
+    <div class="article-container">
+        {% for article in articles %}
+            <div class="article">
+                <img src="{{ asset('build/images/product.jpg') }}">
+                <div class="properties">
+                    <h2>{{ article.name }}</h2>
+                    <p>{{ article.length }}cm x {{ article.width }}cm</p>
+                    {{ form_row(form['quantity_' ~ loop.index0], {label: 'Quantité', attr: {min: 0}}) }}
+                </div>
             </div>
-        </div>
-    {% endfor %}
-    {{ form_row(form.comment, {label: 'Commentaire'}) }}
+        {% endfor %}
+    </div>
+    {{ form_widget(form.comment, {attr: {class: 'input', placeholder: 'Entrez un commentaire...'}}) }}
 
     <button type="submit">Commander</button>
     {{ form_end(form) }}
