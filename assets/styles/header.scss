@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     font-size: 15px;
     background-color: $main-color;
@@ -15,4 +15,11 @@
 
 .logo  {
     width: 60px;
+    margin-right: 1rem;
+}
+
+@media (min-width: 992px) {
+    .logo {
+        width: 40PX;
+    }
 }
