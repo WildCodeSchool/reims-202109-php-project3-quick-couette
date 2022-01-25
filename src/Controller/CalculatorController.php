@@ -22,6 +22,7 @@ class CalculatorController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $order->setSavedAt(new DateTime());
+            $order->setStatus(Order::STATUS_NOT_A_COMMAND);
             $entityManager->persist($order);
             $entityManager->flush();
             return $this->redirectToRoute('calculator_history');
