@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/', name: 'calculator_')]
+#[Route('/calculator', name: 'calculator_')]
 class CalculatorController extends AbstractController
 {
     private function generateForm(Order $order, Request $request, EntityManagerInterface $entityManager): Response
