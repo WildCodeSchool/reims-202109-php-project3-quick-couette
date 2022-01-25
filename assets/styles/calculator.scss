@@ -167,3 +167,44 @@
 .main-calculator {
     visibility: hidden;
 }
+
+@media (min-width: 992px) {
+
+    #calculator-form{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        font-size: 30px;
+        gap: 1rem;
+    }
+
+     #calculator-name{
+        margin-right: 2rem;
+    }
+
+    #calculator-articles{
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #calculator-add{
+        font-size: 50px;
+    }
+    
+    #calculator-name legend, .calculator-article legend {
+        font-size: 2rem;
+    }
+    .title{
+        font-size: 50px;
+    }
+    .logo{
+        width: initial;
+    }
+
+    #calculator-save{
+        font-size: 3rem;
+    }
+
+}
