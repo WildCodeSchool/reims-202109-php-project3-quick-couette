@@ -16,7 +16,7 @@ class CalculatorControllerTest extends WebTestCase
         ?int $expectedActive
     ): void {
         $client = static::createClient();
-        $crawler = $client->request('GET', "/history?page=$pageRequest");
+        $crawler = $client->request('GET', "/calulator/history?page=$pageRequest");
 
         $this->assertResponseIsSuccessful();
 
