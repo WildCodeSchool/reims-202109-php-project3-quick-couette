@@ -16,6 +16,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Order
 {
+    public const STATUS_NOT_A_COMMAND = 0;
+    public const STATUS_WAITING = 1;
+    public const STATUS_ACCEPTED = 2;
+    public const STATUS_REFUSED = 3;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
