@@ -16,6 +16,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Order
 {
+    public const STATUS_NOT_A_COMMAND = 0;
+    public const STATUS_WAITING = 1;
+    public const STATUS_ACCEPTED = 2;
+    public const STATUS_REFUSED = 3;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -69,6 +74,22 @@ class Order
      * @ORM\Column(type="integer")
      */
     private int $withdrawWidth;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private int $status;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $comment;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private User $user;
 
     public function __construct()
     {
@@ -185,6 +206,42 @@ class Order
     public function setWithdrawWidth(int $withdrawWidth): self
     {
         $this->withdrawWidth = $withdrawWidth;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
