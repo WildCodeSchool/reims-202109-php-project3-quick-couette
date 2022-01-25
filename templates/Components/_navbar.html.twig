@@ -3,15 +3,15 @@
     <ul>
         <li class="nav-item {{ app.request.get("_route") in ["calculator_index", "calculator_edit"] ? "navbar-active" : "" }}">
             <a class="nav-link" href="{{ path('calculator_index') }}"><i class="fas fa-calculator"></i></a>
-            <a class="nav-destkop">Calculatrice</a>
+            <span class="nav-label">Calculatrice</span>
         </li>
         <li class="nav-item {{ app.request.get("_route") == "calculator_history" ? "navbar-active" : "" }}">
             <a class="nav-link" href="{{ path('calculator_history') }}"><i class="fas fa-history"></i></a>
-            <a class="nav-destkop">Historique</a>
+            <span class="nav-label">Historique</span>
         </li>
         <li class="nav-item {{ app.request.get("_route") in ["profile_index", "login"] ? "navbar-active" : "" }}">
             <a class="nav-link" href="{{ path('profile_index') }}"><i class="fas fa-user"></i></a>
-            <a class="nav-destkop">Profil</a>
+            <span class="nav-label">Profil</span>
         </li>
     </ul>
 </nav>
