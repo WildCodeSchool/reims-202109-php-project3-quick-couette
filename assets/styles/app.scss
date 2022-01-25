@@ -42,6 +42,15 @@
 @import 'login.scss';
 @import 'registrationForm.scss';
 
+@media (max-width: 800px) {
+
+    /* ------------------------- navbar ------------------------- */
+
+    .nav-destkop {
+        display: none;
+    }
+}
+
 /* ------------------------- body ------------------------- */
 
 body {
@@ -142,4 +151,8 @@ input {
     background-color: $secondary-color;
     color: $black;
     border-radius: 1rem;
+}
+
+.nav-destkop {
+    font-size: 2rem;
 }
