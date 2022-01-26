@@ -169,4 +169,20 @@ input {
     .nav-label {
         display: revert;
     }
+
+    .history-result {
+        display: flex;
+        padding: 2rem;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .history-pages {
+        font-size: 22px;
+    }
+
+    .input {
+        padding: 0.5rem;
+        font-size: 20px;
+    }
 }

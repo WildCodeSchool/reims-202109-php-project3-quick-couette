@@ -174,12 +174,7 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        font-size: 30px;
         gap: 1rem;
-    }
-
-    #calculator-name {
-        margin-right: 2rem;
     }
 
     #calculator-articles {
@@ -190,7 +185,7 @@
     }
 
     #calculator-add {
-        font-size: 50px;
+        font-size: 20px;
     }
 
     #calculator-name legend,
@@ -198,11 +193,4 @@
         font-size: 2rem;
     }
 
-    .title {
-        font-size: 50px;
-    }
-
-    #calculator-save {
-        font-size: 3rem;
-    }
 }
