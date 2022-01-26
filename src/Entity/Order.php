@@ -215,6 +215,23 @@ class Order
         return $this->status;
     }
 
+    public function getStatusString(): string
+    {
+        if ($this->status === self::STATUS_ACCEPTED) {
+            return "Accepté";
+        }
+        if ($this->status === self::STATUS_REFUSED) {
+            return "Refusé";
+        }
+        if ($this->status === self::STATUS_WAITING) {
+            return "En attente";
+        }
+        if ($this->status === self::STATUS_NOT_A_COMMAND) {
+            return "En calcul";
+        }
+        return "Erreur";
+    }
+
     public function setStatus(int $status): self
     {
         $this->status = $status;
