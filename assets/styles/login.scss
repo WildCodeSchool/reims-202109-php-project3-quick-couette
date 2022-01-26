@@ -16,3 +16,23 @@
 .register-text {
     margin-top: 1rem;
 }
+
+@media (min-width: 992px) {
+    
+    .main {
+        font-size: 20px;
+    }
+
+    #username {
+        font-size: 20px;
+    }
+
+    #password {
+        font-size: 20px;
+    }
+
+    .login-submit {
+        font-size: 1.5rem;
+    }
+
+}

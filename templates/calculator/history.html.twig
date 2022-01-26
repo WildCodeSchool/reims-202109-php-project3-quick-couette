@@ -5,7 +5,7 @@
 {% block body %}
 <main class="main justify-start">
     <form method="get">
-        <input type="search" name="search" class="input" placeholder="Rechercher..." value="{{ app.request.query.get('search') }}">
+        <input type="search" id="search-box" name="search" class="input" placeholder="Rechercher..." value="{{ app.request.query.get('search') }}">
     </form>
     {% if total_pages %}
         <div class="history-pages">
