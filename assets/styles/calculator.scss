@@ -179,7 +179,7 @@
 
     #calculator-articles {
         display: flex;
-        gap: 1rem;
+        column-gap: 1em;
         flex-wrap: wrap;
         justify-content: center;
     }
