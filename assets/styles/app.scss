@@ -157,7 +157,7 @@ input {
     cursor: pointer;
     display: inline-block;
 }
-  
+
 .modal[open] > .modal-trigger::before {
     position: fixed;
     top: 0;
