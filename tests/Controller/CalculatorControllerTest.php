@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CalculatorControllerTest extends WebTestCase
@@ -16,6 +17,12 @@ class CalculatorControllerTest extends WebTestCase
         ?int $expectedActive
     ): void {
         $client = static::createClient();
+
+        /** @var UserRepository $userRepository */
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $user = $userRepository->findOneByEmail('admin@quick-couette.fr');
+        $client->loginUser($user);
+
         $crawler = $client->request('GET', "/calculator/history?page=$pageRequest");
 
         $this->assertResponseIsSuccessful();
