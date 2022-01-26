@@ -58,8 +58,8 @@ class OrderRepository extends ServiceEntityRepository
     {
         /** @var Order[] */
         $orders = $this->createQueryBuilder('o')
-            ->orWhere('o.user = :user')
-            ->orWhere('o.status != :status')
+            ->andWhere('o.user = :user')
+            ->andWhere('o.status != :status')
             ->addOrderBy('o.savedAt', 'DESC')
             ->addOrderBy('o.id', 'DESC')
             ->setParameter('user', $user)
