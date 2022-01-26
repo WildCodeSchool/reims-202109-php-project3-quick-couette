@@ -50,3 +50,38 @@
         margin:auto;
     }
 }
+
+@media (min-width: 992px) {
+    .main-store .article-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .main-store .article
+    > img {
+        height: 8rem;
+    }
+
+    .input {
+        width: 50%;
+    }
+
+    .main-store textarea {
+        font-size: 20px;
+    }
+
+    .store-input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-store button {
+        font-size: 2rem;
+    }
+
+    .main-store .registration-title {
+        font-size: 50px;
+    }
+
+}

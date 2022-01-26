@@ -5,7 +5,7 @@
 {% block body %}
 <main class="main main-store">
     <h1 class="registration-title">Nos produits</h1>
-    {{ form_start(form, {attr: {onsubmit: "return confirm('Confirmez-vous cette commande ?');"}}) }}
+    {{ form_start(form, {attr: {class: 'store-input', onsubmit: "return confirm('Confirmez-vous cette commande ?');"}}) }}
     <div class="article-container">
         {% for article in articles %}
             <div class="article">
