@@ -5,14 +5,16 @@
             <a class="nav-link" href="{{ path('store_index') }}"><i class="fas fa-home"></i></a>
             <span class="nav-label">Boutique</span>
         </li>
-        <li class="nav-item {{ app.request.get("_route") in ["calculator_index", "calculator_edit"] ? "navbar-active" : "" }}">
-            <a class="nav-link" href="{{ path('calculator_index') }}"><i class="fas fa-calculator"></i></a>
-            <span class="nav-label">Calculatrice</span>
-        </li>
-        <li class="nav-item {{ app.request.get("_route") == "calculator_history" ? "navbar-active" : "" }}">
-            <a class="nav-link" href="{{ path('calculator_history') }}"><i class="fas fa-history"></i></a>
-            <span class="nav-label">Historique</span>
-        </li>
+        {% if is_granted('ROLE_ADMINISTRATOR') %}
+            <li class="nav-item {{ app.request.get("_route") in ["calculator_index", "calculator_edit"] ? "navbar-active" : "" }}">
+                <a class="nav-link" href="{{ path('calculator_index') }}"><i class="fas fa-calculator"></i></a>
+                <span class="nav-label">Calculatrice</span>
+            </li>
+            <li class="nav-item {{ app.request.get("_route") == "calculator_history" ? "navbar-active" : "" }}">
+                <a class="nav-link" href="{{ path('calculator_history') }}"><i class="fas fa-history"></i></a>
+                <span class="nav-label">Historique</span>
+            </li>
+        {% endif %}
         <li class="nav-item {{ app.request.get("_route") in ["profile_index", "login"] ? "navbar-active" : "" }}">
             <a class="nav-link" href="{{ path('profile_index') }}"><i class="fas fa-user"></i></a>
             <span class="nav-label">Profil</span>
