@@ -171,7 +171,7 @@ input {
     background: rgba(27,31,35,0.5);
   }
   
-  .modal-content {
+.modal-content {
     @extend %border;
     position: fixed;
     top:30%;
