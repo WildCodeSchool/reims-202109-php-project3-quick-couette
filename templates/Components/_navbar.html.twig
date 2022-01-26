@@ -1,6 +1,10 @@
 <script src="https://kit.fontawesome.com/67991a0794.js" crossorigin="anonymous"></script>
 <nav class="navbar">
     <ul>
+        <li class="nav-item {{ app.request.get("_route") in ["store_index"] ? "navbar-active" : "" }}">
+            <a class="nav-link" href="{{ path('store_index') }}"><i class="fas fa-home"></i></a>
+            <span class="nav-label">Boutique</span>
+        </li>
         <li class="nav-item {{ app.request.get("_route") in ["calculator_index", "calculator_edit"] ? "navbar-active" : "" }}">
             <a class="nav-link" href="{{ path('calculator_index') }}"><i class="fas fa-calculator"></i></a>
             <span class="nav-label">Calculatrice</span>
