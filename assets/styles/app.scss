@@ -152,6 +152,10 @@ input {
 }
 
 @media (min-width: 992px) {
+    #calculator-save {
+        bottom: 2rem;
+    }
+
     .header {
         order: -2;
     }
