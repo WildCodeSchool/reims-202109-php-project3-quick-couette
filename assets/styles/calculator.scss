@@ -192,6 +192,7 @@ form[name="calculator_search"] {
                 gap: 0.2rem;
             }
         }
+
         button[type="submit"] {
             @include button;
         }
