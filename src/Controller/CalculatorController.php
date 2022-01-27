@@ -88,4 +88,14 @@ class CalculatorController extends AbstractController
 
         return $this->redirectToRoute('calculator_history', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/accept', name: 'accept', defaults: ['status' => Order::STATUS_ACCEPTED])]
+    #[Route('/{id}/refuse', name: 'refuse', defaults: ['status' => Order::STATUS_REFUSED])]
+    public function status(Order $order, EntityManagerInterface $entityManager, int $status): Response
+    {
+        $order->setStatus($status);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
+    }
 }
