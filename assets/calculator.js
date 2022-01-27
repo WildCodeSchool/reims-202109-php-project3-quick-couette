@@ -10,34 +10,48 @@ function getArticles() {
     return document.querySelectorAll('.calculator-article');
 }
 
-function getArticleValues(formData, counter) {
-    const getFieldValue = (name) => parseInt(formData.get(`calculator[articles][${counter}][${name}]`), 10);
-    const length = getFieldValue('length');
-    const width = getFieldValue('width');
-    const quantity = getFieldValue('quantity');
-    return [length, width, quantity];
-}
-
 function ShowResult(counter, formData) {
     const resultSpan = document.querySelector(`#article-result-${counter}`);
 
-    const [length, width, quantity] = getArticleValues(formData, counter);
-    if (!length || !width || !quantity) {
+    const getArticleFieldValue = (name) => parseInt(formData.get(`calculator[articles][${counter}][${name}]`), 10);
+    const getFieldValue = (name) => parseInt(formData.get(`calculator[${name}]`), 10);
+    const length = getArticleFieldValue('length');
+    const width = getArticleFieldValue('width');
+    const quantity = getArticleFieldValue('quantity');
+    const globalWidth = getFieldValue('width');
+    const withdrawWidth = getFieldValue('withdrawWidth');
+    const withdrawLength = getFieldValue('withdrawLength');
+
+    if (
+        !length
+        || !width
+        || !quantity
+        || !globalWidth
+        || length < 0
+        || width < 0
+        || quantity < 0
+        || globalWidth < 0
+        || withdrawLength < 0
+        || withdrawLength < 0
+    ) {
         resultSpan.parentElement.style.display = 'none';
         delete resultSpan.dataset.totalLength;
         return;
     }
 
     const margin = 2;
-    const strip = 290;
+    const strip = (globalWidth * (100 - withdrawWidth)) / 100;
 
     const articlesPerRow = Math.floor((strip - margin) / (width + margin));
-    const leftOver = strip - (articlesPerRow * (width + margin));
-    const totalLength = (length + margin) * 2 * quantity;
+    let leftOver = strip - (articlesPerRow * (width + margin));
+    leftOver = Math.round(leftOver * 100) / 100;
+    const totalLength = (((length * 100) / (100 - withdrawLength)) + margin)
+        * 2 * Math.ceil(quantity / articlesPerRow);
+    const totalLengthMeters = Math.ceil(totalLength / 1000);
 
     resultSpan.dataset.totalLength = totalLength;
     resultSpan.parentElement.style.removeProperty('display');
-    resultSpan.innerHTML = `Longueur: ${totalLength}cm<br>Chutes: ${leftOver}cm<br>(${length} + ${margin}) * 2 * ${quantity}`;
+    resultSpan.innerHTML = `Longueur: ${totalLengthMeters}m<br>Chutes: ${leftOver}cm`;
 }
 
 function ShowTotal(formData) {
@@ -61,8 +75,8 @@ function ShowTotal(formData) {
     resultDiv.style.removeProperty('display');
     saveButton.style.removeProperty('display');
 
-    // TODO: Format output
-    document.querySelector('#calculator-results > p').innerHTML = `Longueur: ${total}cm`;
+    const totalMeters = Math.ceil(total / 1000);
+    document.querySelector('#calculator-results > p').innerHTML = `<strong>Longueur totale</strong>: ${totalMeters}m`;
     document.querySelector('#calculator_length').value = total;
 }
 
@@ -147,5 +161,14 @@ document.querySelector('#calculator-form').addEventListener('input', (event) => 
     }
     RefreshResult(match.groups.counter);
 });
+
+const globalInputs = document.querySelectorAll('#calculator_width, #calculator_withdrawLength, #calculator_withdrawWidth');
+globalInputs.forEach((input) => input.addEventListener('input', (event) => {
+    getArticles().forEach((article) => {
+        const articleDiv = article.querySelector('div');
+        const counter = parseInt(articleDiv.id.match(/\d+$/), 10);
+        RefreshResult(counter);
+    });
+}));
 
 document.querySelector('.main-calculator').style.visibility = 'visible';
