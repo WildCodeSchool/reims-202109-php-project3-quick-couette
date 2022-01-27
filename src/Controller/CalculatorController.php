@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Form\CalculatorSearchType;
 use App\Form\CalculatorType;
 use App\Repository\OrderRepository;
 use DateTime;
@@ -43,30 +44,27 @@ class CalculatorController extends AbstractController
     #[Route('/history', name: 'history')]
     public function history(Request $request, OrderRepository $orderRepository): Response
     {
-        $search = $request->query->get('search');
-        $page = $request->query->get('page', '1');
-        $limit = $request->query->get('limit', '4');
-        $page = max(intval($page), 1);
-        $limit = max(intval($limit), 1);
+        $page = max(intval($request->query->get('page', '1')), 1);
+        $limit = max(intval($request->query->get('limit', '4')), 1);
         $offset = ($page - 1) * $limit;
 
-        if (!empty($search)) {
-            $orders = $orderRepository->findLikeNameOrReference($search, $offset, $limit);
-            $count = $orderRepository->findLikeNameOrReferenceCount($search);
-        } else {
-            $orders = $orderRepository->findBy(
-                [],
-                ['savedAt' => 'DESC', 'id' => 'DESC'],
-                $limit,
-                $offset
-            );
-            $count = $orderRepository->count([]);
+        $form = $this->createForm(CalculatorSearchType::class, null, ['method' => 'GET']);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var array $data */
+            $data = $form->getData();
+            list('search' => $search, 'from' => $dateFrom, 'to' => $dateTo) = $data;
         }
+
+        list($orders, $total) =
+            $orderRepository->findOrders($search ?? null, $dateFrom ?? null, $dateTo ?? null, $offset, $limit);
 
         return $this->render('calculator/history.html.twig', [
             'orders' => $orders,
+            'search_form' => $form->createView(),
             'current_page' => $page,
-            'total_pages' => ceil($count / $limit),
+            'total_pages' => ceil($total / $limit),
         ]);
     }
 
