@@ -106,6 +106,12 @@
     height: 5rem;
 }
 
+.main-history {
+    h1 {
+        margin: auto;
+    }
+}
+
 .history-result {
     @extend %margin-bottom;
     @extend %border;
@@ -236,8 +242,8 @@ form[name="calculator_search"] {
     }
 
     form[name="calculator_search"] {
-        margin: auto;
-        width: 50%;
+        margin: 1rem auto;
+        width: 50vw;
 
         input[type="search"] {
             padding: 0.5rem;
