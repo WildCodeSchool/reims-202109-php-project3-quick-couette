@@ -3,7 +3,7 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-    <main class="main justify-start">
+    <main class="main justify-start main-profile">
         <div class="connection-container">
             <h1 class="registration-title">Profil</h1>
             <div class="disconnection-text">
@@ -51,17 +51,17 @@
                     </tr>
                     {% for order in orders %}
                         <tr>
-                            <td>{{ order.savedAt|date('d/m/Y') }}</td>
+                            <td>{{ order.savedAt|date('d/m/y') }}</td>
                             <td>
                             {% for article in order.articles %}
-                                <span>{{ article.name }}×{{ article.quantity }}</span>
+                                <span>{{ article.name }} ×{{ article.quantity }}</span>
                             {% endfor %}
                             </td>
-                            <td>
-                                {{ order.statusString }}
+                            <td class="order-status">
+                                <span>{{ order.statusString }}</span>
                                 {% if order.comment is not empty %}
                                     <details class="modal">
-                                        <summary class="modal-trigger"><i id="myIcon" class="far fa-comment-dots"></i></summary>
+                                        <summary class="modal-trigger"><i class="far fa-comment-dots"></i></summary>
                                         <pre class="modal-content">{{ order.comment }}</pre>
                                     </details>
                                 {% endif %}
