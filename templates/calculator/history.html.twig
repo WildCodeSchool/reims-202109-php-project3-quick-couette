@@ -4,9 +4,17 @@
 
 {% block body %}
 <main class="main justify-start">
-    <form method="get">
-        <input type="search" id="search-box" name="search" class="input" placeholder="Rechercher..." value="{{ app.request.query.get('search') }}">
-    </form>
+
+    {{ form_start(search_form) }}
+        {{ form_widget(search_form.search, {attr: {class: 'input', placeholder: 'Rechercher...'}}) }}
+        <div>
+            <div>
+                {{ form_row(search_form.from, {label: 'Du'}) }}
+                {{ form_row(search_form.to, {label: 'au'}) }}
+            </div>
+            <button type="submit">Rechercher</button>
+        </div>
+    {{ form_end(search_form) }}
     {% if total_pages %}
         <div class="history-pages">
             {% if (total_pages - current_page)|abs > (current_page - 1) %}

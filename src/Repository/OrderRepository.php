@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Order;
 use App\Entity\User;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,38 +21,53 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    /**
-     * @return Order[] Returns an array of Order objects
-     */
-    public function findLikeNameOrReference(string $search, int $offset, int $limit): array
-    {
-        /** @var Order[] */
-        $orders = $this->createQueryBuilder('o')
-            ->orWhere('o.name LIKE :search')
-            ->orWhere('o.reference LIKE :search')
-            ->setFirstResult($offset)
-            ->setMaxResults($limit)
+    public function findOrders(
+        ?string $search,
+        ?DateTime $dateFrom,
+        ?DateTime $dateTo,
+        ?int $offset,
+        ?int $limit
+    ): array {
+        $qb = $this->createQueryBuilder('o');
+
+        if ($search) {
+            $qb
+                ->andWhere('o.name LIKE :search OR o.reference LIKE :search')
+                ->setParameter('search', "%$search%")
+            ;
+        }
+        if ($dateFrom) {
+            $qb
+                ->andWhere('o.savedAt >= :from')
+                ->setParameter('from', $dateFrom)
+            ;
+        }
+        if ($dateTo) {
+            $qb
+                ->andWhere('o.savedAt <= :to')
+                ->setParameter('to', $dateTo)
+            ;
+        }
+
+        $orders = $qb
             ->addOrderBy('o.savedAt', 'DESC')
             ->addOrderBy('o.id', 'DESC')
-            ->setParameter('search', "%$search%")
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
         ;
-        return $orders;
-    }
 
-    public function findLikeNameOrReferenceCount(string $search): int
-    {
-        /** @var int */
-        $count = $this->createQueryBuilder('o')
+        $count = $qb
+            ->resetDQLPart('orderBy')
+            ->setFirstResult(null)
+            ->setMaxResults(null)
             ->select('COUNT(o)')
-            ->orWhere('o.name LIKE :search')
-            ->orWhere('o.reference LIKE :search')
-            ->setParameter('search', "%$search%")
             ->getQuery()
             ->getSingleScalarResult()
         ;
-        return $count;
+
+        return [$orders, $count];
     }
 
     public function findByUser(User $user): array

@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Order;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -35,6 +36,7 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
                     ->setWithdrawWidth(1)
                     ->setStatus(Order::STATUS_NOT_A_COMMAND)
                     ->setUser($user)
+                    ->setSavedAt(new DateTime())
                 ;
                 $this->addReference("order_{$name}_{$i}", $order);
                 $manager->persist($order);
