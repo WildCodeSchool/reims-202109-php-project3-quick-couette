@@ -6,16 +6,18 @@
     <main class="main justify-start main-profile">
         <div class="connection-container">
             <h1 class="registration-title">Profil</h1>
-            <div class="disconnection-text">
+            <div>
                 <p>
                     Vous êtes connecté {{ app.user.email }}<br>
                     <a href="{{ path('logout') }}">Se déconnecter</a>
                 </p>
             </div>
             {% if is_granted('ROLE_ADMINISTRATOR') %}
-                <hr>
                 <div>
                     <h2>Commandes en attente</h2>
+                    {% if waitingOrders is empty %}
+                    <p>Aucune commande en attente<p/>
+                    {% else %}
                     <table>
                         <tr>
                             <th>Email</th>
@@ -24,10 +26,12 @@
                         </tr>
                         {% for order in waitingOrders %}
                             <tr>
-                                <td>{{ order.user.email }}</td>
+                                <td class="email">{{ order.user.email }}</td>
                                 <td>
                                 {% for article in order.articles %}
                                     <span>{{ article.name }} ×{{ article.quantity }}</span>
+                                {% else %}
+                                    <span>Aucun article</span>
                                 {% endfor %}
                                 </td>
                                 <td>
@@ -38,11 +42,14 @@
                             </tr>
                         {% endfor %}
                     </table>
+                    {% endif %}
                 </div>
             {% endif %}
-            <hr>
             <div>
                 <h2>Vos dernières commandes</h2>
+                {% if orders is empty %}
+                <p>Vous n'avez effectué aucune commande<p/>
+                {% else %}
                 <table>
                     <tr>
                         <th>Date</th>
@@ -55,20 +62,25 @@
                             <td>
                             {% for article in order.articles %}
                                 <span>{{ article.name }} ×{{ article.quantity }}</span>
+                            {% else %}
+                                <span>Aucun article</span>
                             {% endfor %}
                             </td>
-                            <td class="order-status">
-                                <span>{{ order.statusString }}</span>
-                                {% if order.comment is not empty %}
-                                    <details class="modal">
-                                        <summary class="modal-trigger"><i class="far fa-comment-dots"></i></summary>
-                                        <pre class="modal-content">{{ order.comment }}</pre>
-                                    </details>
-                                {% endif %}
+                            <td>
+                                <div class="order-status">
+                                    <span>{{ order.statusString }}</span>
+                                    {% if order.comment is not empty %}
+                                        <details class="modal">
+                                            <summary class="modal-trigger"><i class="far fa-comment-dots"></i></summary>
+                                            <pre class="modal-content">{{ order.comment }}</pre>
+                                        </details>
+                                    {% endif %}
+                                </div>
                             </td>
                         </tr>
                     {% endfor %}
                 </table>
+                {% endif %}
             </div>
         </div>
     </main>

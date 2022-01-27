@@ -1,0 +1,47 @@
+.main-profile {
+    text-align: center;
+
+    a,
+    summary {
+        color: #0067c0;
+    }
+
+    h1 {
+        margin-bottom: 1rem;
+    }
+
+    h2 {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    table {
+        @extend %border;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    td span {
+        display: block;
+    }
+
+    details {
+        margin-left: 0.2rem;
+    }
+
+    td {
+        padding: 0.2rem;
+        padding-top: 0.5rem;
+        white-space: nowrap;
+    }
+
+    .email {
+        word-wrap: break-word;
+        white-space: initial;
+    }
+
+    .order-status {
+        display: flex;
+        justify-content: center;
+    }
+}
