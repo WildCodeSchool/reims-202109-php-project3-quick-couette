@@ -32,7 +32,10 @@
                             <td>
                                 {{ order.statusString }}
                                 {% if order.comment is not empty %}
-                                    <i class="far fa-comment-dots"></i>
+                                    <details class="modal">
+                                        <summary class="modal-trigger"><i id="myIcon" class="far fa-comment-dots"></i></summary>
+                                        <pre class="modal-content">{{ order.comment }}</pre>
+                                    </details>
                                 {% endif %}
                             </td>
                         </tr>
