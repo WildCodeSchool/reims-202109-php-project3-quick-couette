@@ -12,6 +12,34 @@
                     <a href="{{ path('logout') }}">Se déconnecter</a>
                 </p>
             </div>
+            {% if is_granted('ROLE_ADMINISTRATOR') %}
+                <hr>
+                <div>
+                    <h2>Commandes en attente</h2>
+                    <table>
+                        <tr>
+                            <th>Email</th>
+                            <th>Articles</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for order in waitingOrders %}
+                            <tr>
+                                <td>{{ order.user.email }}</td>
+                                <td>
+                                {% for article in order.articles %}
+                                    <span>{{ article.name }}×{{ article.quantity }}</span>
+                                {% endfor %}
+                                </td>
+                                <td>
+                                    <a href=""><i class="fas fa-search-plus"></i></a>
+                                    <a href=""><i class="fas fa-check"></i></a>
+                                    <a href=""><i class="fas fa-times"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endif %}
             <hr>
             <div>
                 <h2>Vos dernières commandes</h2>
