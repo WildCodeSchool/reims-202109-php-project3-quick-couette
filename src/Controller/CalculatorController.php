@@ -17,8 +17,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[IsGranted('ROLE_ADMINISTRATOR')]
 class CalculatorController extends AbstractController
 {
-    private function generateForm(Order $order, Request $request, EntityManagerInterface $entityManager): Response
-    {
+    private function generateForm(
+        Order $order,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        array $twigParameters = []
+    ): Response {
         $form = $this->createForm(CalculatorType::class, $order);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -28,9 +32,9 @@ class CalculatorController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('calculator_history');
         }
-        return $this->render('calculator/index.html.twig', [
+        return $this->render('calculator/index.html.twig', array_merge($twigParameters, [
             "form" => $form->createView(),
-        ]);
+        ]));
     }
 
     #[Route('/', name: 'index')]
@@ -73,7 +77,7 @@ class CalculatorController extends AbstractController
     #[Route('/{id}/edit', name: 'edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager, Order $order): Response
     {
-        return $this->generateForm($order, $request, $entityManager);
+        return $this->generateForm($order, $request, $entityManager, ['order' => $order]);
     }
 
     #[Route('/{id}/delete', name: 'delete')]
