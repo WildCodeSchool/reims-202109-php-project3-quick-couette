@@ -27,7 +27,7 @@
                                 <td>{{ order.user.email }}</td>
                                 <td>
                                 {% for article in order.articles %}
-                                    <span>{{ article.name }}×{{ article.quantity }}</span>
+                                    <span>{{ article.name }} ×{{ article.quantity }}</span>
                                 {% endfor %}
                                 </td>
                                 <td>
@@ -47,7 +47,7 @@
                     <tr>
                         <th>Date</th>
                         <th>Articles</th>
-                        <th>Etat</th>
+                        <th>Status</th>
                     </tr>
                     {% for order in orders %}
                         <tr>

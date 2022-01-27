@@ -95,6 +95,17 @@
     margin: 2rem 0;
 }
 
+.input-comment::-webkit-scrollbar {
+    display: none;
+}
+
+.input-comment {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin: 0;
+    height: 5rem;
+}
+
 .history-result {
     @extend %margin-bottom;
     @extend %border;

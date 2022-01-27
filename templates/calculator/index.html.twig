@@ -18,6 +18,19 @@
             {{ form_row(form.width) }}
             {{ form_row(form.withdrawLength) }}
             {{ form_row(form.withdrawWidth) }}
+            {% if order is defined %}
+                <div>
+                    <span>Créée le</span>
+                    <span>{{ order.savedAt|date('d/m/Y') }}</span>
+                </div>
+                {% if order.status %}
+                    <div>
+                        <span>Status</span>
+                        <span>{{ order.statusString }}</span>
+                    </div>
+                {% endif %}
+            {% endif %}
+            {{ form_widget(form.comment, {attr: {class: 'input input-comment', placeholder: 'Entrez un commentaire...'}}) }}
         </div>
     </fieldset>
 
