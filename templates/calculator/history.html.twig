@@ -44,7 +44,6 @@
                 <p><em>Référence</em>: {{ order.reference }}</p>
                 <p><em>Laize</em>: {{ order.width }}cm<br><em>Retrait</em>: Longueur {{ order.withdrawLength }}% / Largeur {{ order.withdrawWidth }}%</p>
             </div>
-            <hr>
             <div class="history-articles">
                 {% for article in order.articles %}
                     <span>{{ article.name }}</span>
@@ -52,7 +51,6 @@
                     <span>Qty {{ article.quantity }}</span>
                 {% endfor %}
             </div>
-            <hr>
             <div class="history-total">
                 <span>Longueur: {{ (order.length / 1000)|round(0, 'ceil') }}m</span>
                 <span>Date: {{ order.savedAt|date('d/m/Y') }}</span>
