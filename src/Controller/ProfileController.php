@@ -22,7 +22,10 @@ class ProfileController extends AbstractController
         $orders = $orderRepository->findByUser($user);
 
         if ($this->isGranted('ROLE_ADMINISTRATOR')) {
-            $waitingOrders = $orderRepository->findByStatus(Order::STATUS_WAITING);
+            $waitingOrders = $orderRepository->findByStatus(Order::STATUS_WAITING, [
+                'savedAt' => 'DESC',
+                'id' => 'DESC'
+            ]);
         }
 
         return $this->render('profile/index.html.twig', [
