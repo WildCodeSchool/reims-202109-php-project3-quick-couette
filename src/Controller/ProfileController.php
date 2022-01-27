@@ -33,4 +33,18 @@ class ProfileController extends AbstractController
             "waitingOrders" => $waitingOrders ?? [],
         ]);
     }
+
+    public function navbarNotificationAdmin(OrderRepository $orderRepository): Response
+    {
+        if ($this->isGranted('ROLE_ADMINISTRATOR')) {
+            $waitingOrders = $orderRepository->findByStatus(Order::STATUS_WAITING, [
+                'savedAt' => 'DESC',
+                'id' => 'DESC'
+            ]);
+        }
+
+        return $this->render('Components/_notificationAdmin.html.twig', [
+            "waitingOrders" => $waitingOrders ?? [],
+        ]);
+    }
 }
