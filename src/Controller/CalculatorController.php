@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\User;
 use App\Form\CalculatorSearchType;
 use App\Form\CalculatorType;
 use App\Repository\OrderRepository;
@@ -27,8 +28,6 @@ class CalculatorController extends AbstractController
         $form = $this->createForm(CalculatorType::class, $order);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $order->setSavedAt(new DateTime());
-            $order->setStatus(Order::STATUS_NOT_A_COMMAND);
             $entityManager->persist($order);
             $entityManager->flush();
             return $this->redirectToRoute('calculator_history');
@@ -41,7 +40,13 @@ class CalculatorController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $order = new Order();
+        /** @var User $user */
+        $user = $this->getUser();
+        $order = (new Order())
+            ->setSavedAt(new DateTime())
+            ->setStatus(Order::STATUS_NOT_A_COMMAND)
+            ->setUser($user)
+        ;
         return $this->generateForm($order, $request, $entityManager);
     }
 

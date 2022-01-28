@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,7 +28,7 @@ class CalculatorType extends AbstractType
             ->add('width', null, ['label' => 'Laize (cm)'])
             ->add('withdrawLength', null, ['label' => 'Retrait en longueur (%)'])
             ->add('withdrawWidth', null, ['label' => 'Retrait en largeur (%)'])
-            ->add('length', HiddenType::class)
+            ->add('length', IntegerType::class, ['attr' => ['hidden' => true]])
             ->add('comment', TextareaType::class, [
                 'required' => false,
             ])
