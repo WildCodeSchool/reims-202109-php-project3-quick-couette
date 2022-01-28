@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\User;
 use App\Form\CalculatorSearchType;
 use App\Form\CalculatorType;
 use App\Repository\OrderRepository;
@@ -39,9 +40,12 @@ class CalculatorController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $order = (new Order())
             ->setSavedAt(new DateTime())
             ->setStatus(Order::STATUS_NOT_A_COMMAND)
+            ->setUser($user)
         ;
         return $this->generateForm($order, $request, $entityManager);
     }
