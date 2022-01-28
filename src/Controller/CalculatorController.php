@@ -27,8 +27,6 @@ class CalculatorController extends AbstractController
         $form = $this->createForm(CalculatorType::class, $order);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $order->setSavedAt(new DateTime());
-            $order->setStatus(Order::STATUS_NOT_A_COMMAND);
             $entityManager->persist($order);
             $entityManager->flush();
             return $this->redirectToRoute('calculator_history');
@@ -41,7 +39,10 @@ class CalculatorController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $order = new Order();
+        $order = (new Order())
+            ->setSavedAt(new DateTime())
+            ->setStatus(Order::STATUS_NOT_A_COMMAND)
+        ;
         return $this->generateForm($order, $request, $entityManager);
     }
 
