@@ -36,7 +36,7 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
                     ->setWithdrawWidth(1)
                     ->setStatus(Order::STATUS_NOT_A_COMMAND)
                     ->setUser($user)
-                    ->setSavedAt(new DateTime())
+                    ->setSavedAt(new DateTime("2021-1-1"))
                 ;
                 $this->addReference("order_{$name}_{$i}", $order);
                 $manager->persist($order);

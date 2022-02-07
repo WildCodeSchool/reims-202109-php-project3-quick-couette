@@ -36,8 +36,8 @@
                                 </td>
                                 <td>
                                     <a href="{{ path('calculator_edit', {id: order.id}) }}"><i class="fas fa-search-plus"></i></a>
-                                    <a href="{{ path('calculator_accept', {id: order.id}) }}"><i class="fas fa-check"></i></a>
-                                    <a href="{{ path('calculator_refuse', {id: order.id}) }}"><i class="fas fa-times"></i></a>
+                                    <a href="{{ path('calculator_accept', {id: order.id}) }}" onclick="return confirm('Confirmez-vous la validation de cette commande ?');"><i class="fas fa-check"></i></a>
+                                    <a href="{{ path('calculator_refuse', {id: order.id}) }}" onclick="return confirm('Confirmez-vous le refus de cette commande ?');"><i class="fas fa-times"></i></a>
                                 </td>
                             </tr>
                         {% endfor %}
