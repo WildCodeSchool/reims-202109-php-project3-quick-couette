@@ -47,7 +47,7 @@ function ShowResult(counter, formData) {
     leftOver = Math.round(leftOver * 100) / 100;
     const totalLength = (((length * 100) / (100 - withdrawLength)) + margin)
         * 2 * Math.ceil(quantity / articlesPerRow);
-    const totalLengthMeters = Math.ceil(totalLength / 1000);
+    const totalLengthMeters = Math.ceil(totalLength / 100);
 
     resultSpan.dataset.totalLength = totalLength;
     resultSpan.parentElement.style.removeProperty('display');
@@ -75,7 +75,7 @@ function ShowTotal(formData) {
     resultDiv.style.removeProperty('display');
     saveButton.style.removeProperty('display');
 
-    const totalMeters = Math.ceil(total / 1000);
+    const totalMeters = Math.ceil(total / 100);
     document.querySelector('#calculator-results > p').innerHTML = `<strong>Longueur totale</strong>: ${totalMeters}m`;
     document.querySelector('#calculator_length').value = total;
 }

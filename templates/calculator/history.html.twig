@@ -53,7 +53,7 @@
             </div>
             <hr>
             <div class="history-total">
-                <span>Longueur: {{ (order.length / 1000)|round(0, 'ceil') }}m</span>
+                <span>Longueur: {{ (order.length / 100)|round(0, 'ceil') }}m</span>
                 <span>Date: {{ order.savedAt|date('d/m/Y') }}</span>
             </div>
             <div class="history-buttons">
